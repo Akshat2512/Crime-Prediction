@@ -1,7 +1,7 @@
 
 const owner = 'Akshat2512';
 const repo = 'Crime-Prediction';
-const token = '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'; // 'Authorization' : 'Bearer ' + token,
+ // 'Authorization' : 'Bearer ' + token,
 const apiUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows`;
 var header = { 'Accept' : 'application/vnd.github.v3+json','Authorization' : 'Bearer ' + token,'X-GitHub-Api-Version' : '2022-11-28'};
 document.querySelector('#btn1').onclick = async ()=>{
