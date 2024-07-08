@@ -1,7 +1,7 @@
 import subprocess,json
 from flask import Flask, render_template, request, redirect, url_for, session
 # from flask_mysqldb import MySQL
-import MySQLdb.cursors
+# import MySQLdb.cursors
 
 import hashlib
 import os
@@ -18,13 +18,13 @@ s.close()
 app = Flask(__name__)
 
 
-connection = MySQLdb.connect(host='127.0.0.1',
-                             user='root',
-                             password='',
-                             db='mydb',
-                             cursorclass=MySQLdb.cursors.DictCursor)
+# connection = MySQLdb.connect(host='127.0.0.1',
+#                              user='root',
+#                              password='',
+#                              db='mydb',
+#                              cursorclass=MySQLdb.cursors.DictCursor)
 
-cursor = connection.cursor()
+# cursor = connection.cursor()
 
 def encrypt_password(password, salt):
     
@@ -46,7 +46,7 @@ def unhex(salt):
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('geocrimes.html')
 
 @app.route('/authenticate', methods=['POST'])
 def login():
