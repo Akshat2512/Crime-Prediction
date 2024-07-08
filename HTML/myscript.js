@@ -1,7 +1,7 @@
 
 const owner = 'Akshat2512';
 const repo = 'Crime-Prediction';
-const token = ''; // 'Authorization' : 'Bearer ' + token,
+ // 'Authorization' : 'Bearer ' + token,
 const apiUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows`;
 var header = { 'Accept' : 'application/vnd.github.v3+json','Authorization' : 'Bearer ' + token,'X-GitHub-Api-Version' : '2022-11-28'};
 document.querySelector('#btn1').onclick = async ()=>{
@@ -23,6 +23,7 @@ var response = await fetch(apiUrl+`/${workflowId}/dispatches`, {
       ref: 'master'
     })
   })
-var data = response;
-console.log(data);
+const myOutput = data.outputs['my-output'];
+console.log(myOutput); 
+
 }
