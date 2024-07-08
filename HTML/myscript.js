@@ -23,8 +23,10 @@ var response = await fetch(apiUrl+`/${workflowId}/dispatches`, {
       ref: 'master'
     })
   })
-var data = await response.json() ;
-var myOutput = data.outputs['my-output'];
-console.log(myOutput); 
+  console.log(response);
+// var data = await response.json() ;
+console.log(data); 
+// var myOutput = data.outputs['my-output'];
+
 
 }
