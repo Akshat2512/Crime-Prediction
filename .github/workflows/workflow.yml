@@ -22,20 +22,22 @@ jobs:
       - run: |
             pip install -r requirements.txt
 
-      - name: Starting application
-        run: | 
-            sudo service mysql start && python app.py \
-            'rnrxv-2409-40d1-d8-a21b-8c48-70cb-1fb2-361b.a.free.pinggy.link' \
-            '35717' \
-            'root' \
-            'password' \
-            'mydb' &
+     
 
       - name: Set up ngrok
         run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
 
       - name: forward port to web
         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
+
+      - name: Starting application
+        run: | 
+            sudo service mysql start && python app.py \
+            'rnoil-2409-40d1-d8-a21b-8c48-70cb-1fb2-361b.a.free.pinggy.link' \
+            '41811' \
+            'root' \
+            'password' \
+            'mydb'
 
       - run: sleep 600
         
