@@ -133,8 +133,9 @@ function updateCharts(jsn, myChart, i, model)
                   <div>Mean Absolute Error: ${jsn['MAE']}</div>
   `
 
-
+ 
   xValues = jsn.Actual['X'].concat(jsn.Predicted['X_Pred']);
+  console.log(xValues)
   yValues = jsn.Actual['y'].map(s => parseInt(s));
   y_pred = jsn.Actual['y'].map(() => null);
   y_pred = y_pred.concat(jsn.Predicted['y_pred'].map(s => parseInt(s)));
@@ -242,7 +243,6 @@ b[0].onclick = () => {
     max = e[i_max];
     myChart.options.scales.xAxes[0].ticks.min = min;
     myChart.options.scales.xAxes[0].ticks.max = max;
-   
     
      c_max = Math.max(...f.slice(i_min, i_max))
      if(c_max != -Infinity)
@@ -267,14 +267,13 @@ async function pred_crimes(){
  var  i = 0;
  
  while(i < models.length){
- const crm = JSON.stringify({"city": z.value, "model":models[i] });
+ const crm = JSON.stringify({"city": z.value, "model": models[i] });
   var response = await fetch('/run_1',{
     method: "POST",
     headers:{"Content-Type" :"application/json"},
     body: crm
   })
   
-  console.log(str)
   var str = await response.text()
   document.querySelector('#loading-page').style.display = 'none';
   jsn = JSON.parse(str)

@@ -8,9 +8,9 @@ from sklearn import metrics
 
 import sys, json, joblib
 
-req_data = json.loads(sys.argv[1])
+# req_data = json.loads(sys.argv[1])
 
-# req_data = {"city": "New_York", "model":"XGBoost"}
+req_data = {"city": "New_York", "model":"XGBoost"}
 df_year=pd.read_csv(f'static/Data/{req_data["city"]}_2001_2023.csv')
 
 # print(df_year)
@@ -143,7 +143,7 @@ if(req_data['city']=='Chicago'):
   y_train = y_train[(y_train.index >= '2017') & (y_train.index <='2017-06-01')]
   X_test = X_test[(X_test.index >='2017') & (X_test.index <='2017-06-01')]
   y_test = y_test[(y_test.index >='2017') & (y_test.index <='2017-06-01')]
-  pred_df= pred_df[pred_df.date<='2017-06-01']
+  pred_df = pred_df[pred_df.date<='2017-06-01']
 
 Act_X = '", "'.join(map(str, X_train.index))
 Act_y = ', '.join(map(str,pd.DataFrame(y_train)['Crime Count']))
@@ -153,6 +153,7 @@ Test_y = ', '.join(map(str,pd.DataFrame(y_test)['Crime Count']))
 
 Pre_X = '", "'.join(map(str, pred_df['date']))
 Pre_y = ', '.join(map(str, pred_df['prediction']))
+
 
 
 Output = '{"Actual": { "X":'+'["'+Act_X+'"]'+', "y":'+'['+Act_y+']'+'}, "Test": {"y_test":'+'['+Test_y+']'+'}, "Predicted": {"X_Pred": '+'["'+Pre_X+'"]'+', "y_pred":'+'['+Pre_y+']'+'}, "MAE":'+str(mae)+', "RMS":'+str(rmse)+', "RSQ":'+str(r2)+', "Model":"'+req_data['model']+'"}'
