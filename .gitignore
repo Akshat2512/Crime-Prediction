@@ -1,2 +1,2 @@
-/static/Data/*.csv
+static/Data/Chicago_crime_2001_2023.csv
 /static/GeoJson
