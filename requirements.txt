@@ -3,5 +3,5 @@ sklearn==0.0
 seaborn==0.13.2
 flask_mysqldb==2.0.0
 numpy==1.26.4
-
+holidays==0.42
 

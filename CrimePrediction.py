@@ -8,9 +8,9 @@ from sklearn import metrics
 
 import sys, json, joblib
 
-# req_data = json.loads(sys.argv[1])
+req_data = json.loads(sys.argv[1])
 
-req_data = {"city": "New_York", "model":"XGBoost"}
+# req_data = {"city": "New_York", "model":"XGBoost"}
 df_year=pd.read_csv(f'static/Data/{req_data["city"]}_2001_2023.csv')
 
 # print(df_year)
