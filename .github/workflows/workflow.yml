@@ -29,8 +29,7 @@ jobs:
             '35563' \
             'root' \
             'password' \
-            'mydb' \
-             &
+            'mydb' &
 
       - name: Set up ngrok
         run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
@@ -38,7 +37,7 @@ jobs:
       - name: forward port to web
         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
 
-      - run: sleep 600 
+      - run: sleep 600
         
 
   
