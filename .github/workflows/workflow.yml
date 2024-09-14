@@ -1,0 +1,51 @@
+name: PHP Server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  setup-php:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2 
+
+      - name: Install pip Dependencies
+        uses: actions/setup-python@v4
+        with:
+         python-version: '3.10'
+         cache: 'pip'
+
+      - run: |
+            pip install -r requirements.txt
+
+      - name: Starting application
+        run: | 
+            sudo service mysql start && python app.py \
+            'rnrfc-2409-40d1-d8-a21b-8c48-70cb-1fb2-361b.a.free.pinggy.link' \
+            '38289' \
+            'root' \
+            'password' \
+            'mydb' \
+             &
+
+      - name: Set up ngrok
+        run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN_HOST }}
+
+      - name: forward port to web
+        run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
+
+      - run: sleep 600
+        
+
+  
+
+
+
+
+
+
+       
