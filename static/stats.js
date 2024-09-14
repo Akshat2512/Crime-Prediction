@@ -274,6 +274,7 @@ async function pred_crimes(){
     body: crm
   })
   
+  console.log(str)
   var str = await response.text()
   document.querySelector('#loading-page').style.display = 'none';
   jsn = JSON.parse(str)
