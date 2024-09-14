@@ -5,4 +5,5 @@ flask_mysqldb==2.0.0
 numpy==1.26.4
 holidays==0.42
 xgboost==2.0.3
+lightgbm==4.3.0
 joblib==1.2.0
