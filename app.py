@@ -66,11 +66,10 @@ def login():
       if(passhash[0] == rv[0]['passhash']):
         del rv[0]['passhash']
         del rv[0]['salt']
-        if(rv[0]['middle_name']==None):
-            rv[0]['middle_name'] = ''
-        if(rv[0]['phone']==None):
-            rv[0]['phone'] = ''
+       
         def d(e):
+            if rv[0][e] == None:
+                return ''
             return rv[0][e]
         return render_template('geocrimes.html', f_name=d('first_name'), m_name=d('middle_name'), l_name=d('last_name'), age=d('age'), email=d('email'), ctr_code=d('country'), ph_no=d('phone'),  u_name=d('username') )
       else:
