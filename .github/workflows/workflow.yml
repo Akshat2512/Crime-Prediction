@@ -1,4 +1,4 @@
-name: PHP Server
+name: Flask Server
 
 on:
   push:
@@ -33,13 +33,14 @@ jobs:
       - name: Starting application
         run: | 
             sudo service mysql start && python app.py \
-            'rnoil-2409-40d1-d8-a21b-8c48-70cb-1fb2-361b.a.free.pinggy.link' \
-            '41811' \
+            'rnoal-2409-40d1-d8-a21b-8c48-70cb-1fb2-361b.a.free.pinggy.link' \
+            '36527' \
             'root' \
             'password' \
-            'mydb'
+            'mydb' \
+            &
 
-      - run: sleep 600
+      - run: sleep 180
         
 
   

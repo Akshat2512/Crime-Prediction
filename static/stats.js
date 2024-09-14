@@ -135,7 +135,6 @@ function updateCharts(jsn, myChart, i, model)
 
  
   xValues = jsn.Actual['X'].concat(jsn.Predicted['X_Pred']);
-  console.log(xValues)
   yValues = jsn.Actual['y'].map(s => parseInt(s));
   y_pred = jsn.Actual['y'].map(() => null);
   y_pred = y_pred.concat(jsn.Predicted['y_pred'].map(s => parseInt(s)));
