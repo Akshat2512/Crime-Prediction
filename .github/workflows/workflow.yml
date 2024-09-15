@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  setup-php:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -33,14 +33,14 @@ jobs:
       - name: Starting application
         run: | 
             sudo service mysql start && python app.py \
-            'rnipg-2409-40d1-d8-a21b-cca1-34a9-e089-c1b5.a.free.pinggy.link' \
-            '46497' \
+            'rnhdp-2409-40d1-d8-a21b-3d46-5708-3127-8761.a.free.pinggy.link' \
+            '33325' \
             'root' \
             'password' \
             'mydb' \
-             &
+             
 
-      - run: sleep 500      
+      - run: sleep 600      
 
   
 

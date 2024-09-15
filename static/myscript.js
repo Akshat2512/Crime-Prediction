@@ -80,7 +80,7 @@ img.forEach(e => {
 
 
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiYWtzaGF0MjUxMiIsImEiOiJjbG01OXVoaXEzeGwyM3FsaW96NGt6aWZxIn0.SHICUGF0uP3IDVnpkCfBTw';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWtzaGF0MjUxMiIsImEiOiJjbTE0NDI4N2YxY3I5MmpzZnNieWFwNXc0In0.JHhey50KWCJT-MgwUeeWVA';
 var style = 'mapbox://styles/akshat2512/';
 
 
@@ -389,18 +389,23 @@ function fly_to(z){
     }
     );
     });
-  
-     map.on('click', 'unclustered-point', (event) => {
-      
-      new mapboxgl.Popup()
-      .setLngLat(event.features[0].geometry.coordinates)
-      .setHTML(`<strong>Location:</strong> ${event.district}<br>
-      <strong>Offense:</strong> ${event.ofns_desc}<br>
-      <strong>Premises Type:</strong> ${event.prem_typ_desc}<br>
-      <strong>Victim Sex:</strong> ${event.vic_sex}<br>
-      <strong>Suspect Sex:</strong> ${event.susp_sex}<br>  `)
-      .addTo(map);
-      });
+    
+    map.on('click', 'unclustered-point', (event) => {
+        const e=event.features[0].properties;
+        console.log(e)
+        if (e.boro_nm)
+          loc = e.boro_nm;
+        else
+          loc = e.block; 
+        new mapboxgl.Popup()
+        .setLngLat(event.features[0].geometry.coordinates)
+        .setHTML(`<strong>Location:</strong> ${loc}<br>
+        <strong>Offense:</strong> ${e.ofns_desc}<br>
+        <strong>Premises Type:</strong> ${e.prem_type}<br>
+        <strong>Date:</strong> ${e.date}<br>
+        <strong>Time:</strong> ${e.time}<br>  `)
+        .addTo(map);
+        });
     
     map.on('mouseenter', 'clusters', () => {
     map.getCanvas().style.cursor = 'pointer';
@@ -557,13 +562,18 @@ function loadheatmap(geodata)
 
        map.on('click', 'crimes-point', (event) => {
         const e=event.features[0].properties;
+        console.log(e)
+        if (e.boro_nm)
+          loc = e.boro_nm;
+        else
+          loc = e.block; 
         new mapboxgl.Popup()
         .setLngLat(event.features[0].geometry.coordinates)
-        .setHTML(`<strong>Location:</strong> ${e.district}<br>
+        .setHTML(`<strong>Location:</strong> ${loc}<br>
         <strong>Offense:</strong> ${e.ofns_desc}<br>
         <strong>Premises Type:</strong> ${e.prem_type}<br>
-        <strong>Victim Sex:</strong> ${e.vic_sex}<br>
-        <strong>Suspect Sex:</strong> ${e.susp_sex}<br>  `)
+        <strong>Date:</strong> ${e.date}<br>
+        <strong>Time:</strong> ${e.time}<br>  `)
         .addTo(map);
         });
 
