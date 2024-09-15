@@ -9,28 +9,23 @@ import hashlib
 import os
 import binascii
 
-# import socket
-# s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-# s.connect(("8.8.8.8", 80))
-# ip_address = s.getsockname()[0]
-# s.close()
 
 db_cred = sys.argv
 
 app = Flask(__name__)
-# connection = MySQLdb.connect(host=db_cred[1],
-#                              port=int(db_cred[2]),
-#                              user=db_cred[3],
-#                              password=db_cred[4],
-#                              db=db_cred[5],
-#                              cursorclass=MySQLdb.cursors.DictCursor)
-
-connection = MySQLdb.connect(host='localhost',
-                             port=3306,
-                             user='root',
-                             password='password',
-                             db='mydb',
+connection = MySQLdb.connect(host=db_cred[1],
+                             port=int(db_cred[2]),
+                             user=db_cred[3],
+                             password=db_cred[4],
+                             db=db_cred[5],
                              cursorclass=MySQLdb.cursors.DictCursor)
+
+# connection = MySQLdb.connect(host='localhost',
+#                              port=3306,
+#                              user='root',
+#                              password='password',
+#                              db='mydb',
+#                              cursorclass=MySQLdb.cursors.DictCursor)
 
 cursor = connection.cursor()
 
