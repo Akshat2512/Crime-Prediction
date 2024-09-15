@@ -216,8 +216,8 @@ function create_account()
          }
       }
     
-    b.onclick = async ()=>{
-            
+    b.onclick = async (e)=>{
+          b.disabled=true;
         var mail = check_email()
         var phno  = check_phonenumber()
 
@@ -270,6 +270,8 @@ function create_account()
                 
 
             }).catch(error=>popupWarning(error));
+
+            b.disabled=false;
     }
   
 
