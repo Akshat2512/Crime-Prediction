@@ -13,21 +13,32 @@ import binascii
 db_cred = sys.argv
 
 app = Flask(__name__)
-connection = MySQLdb.connect(host=db_cred[1],
-                             port=int(db_cred[2]),
-                             user=db_cred[3],
-                             password=db_cred[4],
-                             db=db_cred[5],
-                             cursorclass=MySQLdb.cursors.DictCursor)
 
-# connection = MySQLdb.connect(host='localhost',
-#                              port=3306,
-#                              user='root',
-#                              password='password',
-#                              db='mydb',
-#                              cursorclass=MySQLdb.cursors.DictCursor)
 
-cursor = connection.cursor()
+connection 
+cursor
+def connect_database():
+   
+    try:
+    #    connection = MySQLdb.connect(host='localhost',
+    #                                port=3306,
+    #                                user='root',
+    #                                password='password',
+    #                                db='mydb',
+    #                                cursorclass=MySQLdb.cursors.DictCursor)
+       connection = MySQLdb.connect(host=db_cred[1],
+                                port=int(db_cred[2]),
+                                user=db_cred[3],
+                                password=db_cred[4],
+                                db=db_cred[5],
+                                cursorclass=MySQLdb.cursors.DictCursor)
+       cursor = connection.cursor()
+ 
+    except Exception as e:
+        return False
+    return True
+
+   
 
 def encrypt_password(password, salt):
     
@@ -56,8 +67,13 @@ def login():
    
     username = request.form.get('uname')
     password = request.form.get('pwd')
-   
-    cursor.execute(f"Select * from users where username = '{username}';")
+    try:
+     cursor.execute(f"Select * from users where username = '{username}';")
+    except Exception as e:
+       connect_database()
+       login()
+         
+         
     rv = cursor.fetchall()
     
     if(len(rv) and username.lower() == rv[0]['username']):
@@ -95,7 +111,12 @@ def create_user():
     
     if(uname):
         get_usr = f"select username from users where username = '{uname}';"
-        cursor.execute(get_usr)
+
+        try:
+         cursor.execute(get_usr)
+        except Exception as e:
+         connect_database()
+         return "Failed"
         get_usr = cursor.fetchall()
         if(get_usr):
             return "uname exist"
@@ -142,9 +163,13 @@ def update():
     # old_id = f"select id from users where username = '{uname}'"
     new_id = f"select id from users where username = '{data['username']}'"
     if(uname != data['username']):
-      new_id = cursor.execute(new_id)
-      if(new_id):
-        return 'uname exists'
+        try:
+           new_id = cursor.execute(new_id)
+        except Exception as e:
+            return "Failed"
+          
+        if(new_id):
+          return 'uname exists'
       
     print(data.items())
     for x , y in data.items():
@@ -217,8 +242,12 @@ def change_password():
 @app.route('/check_user', methods=['POST'])
 def check_user():
     username = request.json
-
-    cursor.execute(f"Select username from users where username = '{username}';")
+    try:
+     cursor.execute(f"Select username from users where username = '{username}';")
+    except Exception as e:
+      if(connect_database() == False):
+       return "error"
+      
     rv = cursor.fetchall()
     if(rv):
      return "exist"

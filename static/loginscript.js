@@ -38,6 +38,7 @@ function select_page(){
         x[0].style.display = 'none';
         x[1].style.display = 'inline';
         x[2].style.display = 'inline';
+
     }
 
     x[1].onclick =()=>{
@@ -189,6 +190,9 @@ function create_account()
         }
        else if(await check_user(user) == 'not exist'){ 
           Elem_id('chk_usr').style.cssText='background-color: green';
+         }
+         else if(await check_user(user) == 'error'){
+           popupWarning('Failed!! Database Connection error')
          }
         else{
           Elem_id('chk_usr').style.cssText='background-color: red';
@@ -433,7 +437,7 @@ function change_password(){
               c_pwd.value = "";
               x[0].click();
             }
-         else if(data == 'same as old')
+         else if(data == "same as old")
             popupWarning("Password cannot be same as your old password!!")
          else if(data == "not exist")
               popupWarning('Username not exists!!')
