@@ -14,32 +14,23 @@ db_cred = sys.argv
 
 app = Flask(__name__)
 
-
-global connection 
-global cursor
 def connect_database():
-    global connection
-    global cursor
-    try:
-    #    connection = MySQLdb.connect(host='localhost',
-    #                                port=3306,
-    #                                user='root',
-    #                                password='password',
-    #                                db='mydb',
-    #                                cursorclass=MySQLdb.cursors.DictCursor)
-       connection = MySQLdb.connect(host=db_cred[1],
-                                port=int(db_cred[2]),
-                                user=db_cred[3],
-                                password=db_cred[4],
-                                db=db_cred[5],
-                                cursorclass=MySQLdb.cursors.DictCursor)
-       cursor = connection.cursor()
- 
-    except Exception as e:
-        return False
-    return True
+    # connection = MySQLdb.connect(host=db_cred[1],
+    #                          port=int(db_cred[2]),
+    #                          user=db_cred[3],
+    #                          password=db_cred[4],
+    #                          db=db_cred[5],
+    #                          cursorclass=MySQLdb.cursors.DictCursor)
 
-   
+    connection = MySQLdb.connect(host='localhost',
+                                 port=3306,
+                                 user='root',
+                                 password='password',
+                                 db='mydb',
+                                 cursorclass=MySQLdb.cursors.DictCursor)
+
+    cursor = connection.cursor()
+    return cursor, connection
 
 def encrypt_password(password, salt):
     
@@ -65,16 +56,12 @@ def index():
 
 @app.route('/authenticate', methods=['POST'])
 def login():
-   
+    cursor, _ = connect_database()
+
     username = request.form.get('uname')
     password = request.form.get('pwd')
-    try:
-     cursor.execute(f"Select * from users where username = '{username}';")
-    except Exception as e:
-       connect_database()
-       login()
-         
-         
+   
+    cursor.execute(f"Select * from users where username = '{username}';")
     rv = cursor.fetchall()
     
     if(len(rv) and username.lower() == rv[0]['username']):
@@ -105,6 +92,8 @@ def logout():
 
 @app.route('/create', methods=['POST'])
 def create_user():
+    cursor, connection = connect_database()
+
     req_data = request.json
     print(req_data)
     uname = req_data['username']
@@ -112,12 +101,7 @@ def create_user():
     
     if(uname):
         get_usr = f"select username from users where username = '{uname}';"
-
-        try:
-         cursor.execute(get_usr)
-        except Exception as e:
-         connect_database()
-         return "Failed"
+        cursor.execute(get_usr)
         get_usr = cursor.fetchall()
         if(get_usr):
             return "uname exist"
@@ -155,6 +139,8 @@ def create_user():
 
 @app.route('/update', methods=['POST'])
 def update():
+    cursor, connection = connect_database()
+
     req_data = request.json
     print(req_data)
     uname = req_data['old_uname'].lower()
@@ -164,21 +150,17 @@ def update():
     # old_id = f"select id from users where username = '{uname}'"
     new_id = f"select id from users where username = '{data['username']}'"
     if(uname != data['username']):
-        try:
-           new_id = cursor.execute(new_id)
-        except Exception as e:
-            return "Failed"
-          
-        if(new_id):
-          return 'uname exists'
+      new_id = cursor.execute(new_id)
+      if(new_id):
+        return 'uname exists'
       
-    print(data.items())
+
     for x , y in data.items():
       if(y==''):
         query = query + f" {x} = NULL,"
       else:
        query = query + f" {x} = '{y}'," 
-    print(query)
+  
     query = query[:-1]
     query = query + f" Where username = '{uname}';"
     print(query)
@@ -193,6 +175,8 @@ def update():
 
 @app.route('/ch_pwd', methods=['POST'])
 def change_password():
+    cursor, _ = connect_database()
+
     data = request.json
 
     uname = data['username']
@@ -242,13 +226,10 @@ def change_password():
 
 @app.route('/check_user', methods=['POST'])
 def check_user():
+    cursor, _ = connect_database()
     username = request.json
-    try:
-     cursor.execute(f"Select username from users where username = '{username}';")
-    except Exception as e:
-      if(connect_database() == False):
-       return "error"
-      
+    
+    cursor.execute(f"Select username from users where username = '{username}';")
     rv = cursor.fetchall()
     if(rv):
      return "exist"
