@@ -192,7 +192,7 @@ function edit_account()
         b[2].style.display = 'none';
 
         b[0].onclick = async ()=>{
-            
+            b[0].disabled = true;
             var mail = check_email()
             var phno  = check_phonenumber()
 
@@ -219,11 +219,16 @@ function edit_account()
                       disable_acc_page()
                       acc_page_user_update(k[0])
                       cancel() 
+                      b[0].disabled = false;
                     }
 
-                  else if(data = "uname exists")
+                  else if(data == "uname exists")
                       popupWarning('failed !!! Username already exists')
-                      b[0].disabled = false;
+
+                  else if(data == "Failed")
+                      popupWarning("failed!! Database lost it's connection")
+                  
+                  b[0].disabled = false;
 
                 }).catch(error=>popupWarning(error));
         }
