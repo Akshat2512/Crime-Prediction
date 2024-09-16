@@ -15,10 +15,11 @@ db_cred = sys.argv
 app = Flask(__name__)
 
 
-connection 
-cursor
+global connection 
+global cursor
 def connect_database():
-   
+    global connection
+    global cursor
     try:
     #    connection = MySQLdb.connect(host='localhost',
     #                                port=3306,
