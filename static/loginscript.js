@@ -227,10 +227,6 @@ function create_account()
           return false;
         }
 
-        if(await check_user(Elem_id('uname2').value) == 'exist'){ 
-            popupWarning("Username already exist!!")
-            return false;
-        }
         if(Elem_id('uname2').value=='')
         {
           popupWarning("Username can't be empty!!");
