@@ -223,10 +223,10 @@ function edit_account()
                     }
 
                   else if(data == "uname exists")
-                      popupWarning('failed !!! Username already exists')
+                      popupWarning('Failed !!! Username already exists')
 
                   else if(data == "Failed")
-                      popupWarning("failed!! Database lost it's connection")
+                      popupWarning("Failed!! Database lost it's connection")
                   
                   b[0].disabled = false;
 

@@ -533,7 +533,7 @@ function loadheatmap(geodata)
     // ],
        'paint': {
         
-       // Color circle by earthquake magnitude
+
       //  'circle-color': [
       //  'match',
       //  ['get', 'ofns_desc'],
