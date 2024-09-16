@@ -189,6 +189,7 @@ function create_account()
         }
        else if(await check_user(user) == 'not exist'){ 
           Elem_id('chk_usr').style.cssText='background-color: green';
+          b.disabled = false;
          }
         else{
           Elem_id('chk_usr').style.cssText='background-color: red';
