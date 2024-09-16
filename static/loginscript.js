@@ -217,7 +217,7 @@ function create_account()
       }
     
     b.onclick = async (e)=>{
-          b.disabled=true;
+        b.disabled = true;
         var mail = check_email()
         var phno  = check_phonenumber()
 
@@ -263,11 +263,13 @@ function create_account()
 
               else if(data == "uname exist")
                   popupWarning('Username already exists!!')
-                
+                  
+              b.disabled = false;
+            }).catch(error=>{
+              popupWarning(error)
+              b.disabled = false;
+            });
 
-            }).catch(error=>popupWarning(error));
-
-            b.disabled=false;
     }
   
 
