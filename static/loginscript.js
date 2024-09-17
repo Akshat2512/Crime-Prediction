@@ -155,16 +155,28 @@ function check_email(){
     }
  }
 
- async function check_user(user)
- { 
-    var response = await fetch('/check_user',{
-           method: "POST",
-           headers:{"Content-Type" :"application/json"},
-           body:JSON.stringify(user)
-           });
-       data = await response.text()
-   
-       return data;
+var int_usr;
+function check_user(user)
+ {  
+    clearTimeout(int_usr);
+    int_usr = setTimeout(async() => {
+      var response = await fetch('/check_user',{
+        method: "POST",
+        headers:{"Content-Type" :"application/json"},
+        body:JSON.stringify(user)
+        });
+    data = await response.text()
+    if(data == 'not exist')
+     {
+      Elem_id('chk_usr').style.cssText='background-color: green';
+      Elem_id('acc-content').querySelector('button').disabled=false; 
+     }
+     else if(data == 'exist'){
+      Elem_id('chk_usr').style.cssText='background-color: red';
+      Elem_id('acc-content').querySelector('button').disabled=true; 
+     }
+    }, 1000);
+  
  }
 
 
@@ -187,7 +199,8 @@ function create_account()
         {
             Elem_id('chk_usr').style.cssText='background-color: red';
         }
-       else if(await check_user(user) == 'not exist'){ 
+       else if(user.length >= 6 ){ 
+          check_user(user)
           Elem_id('chk_usr').style.cssText='background-color: green';
           b.disabled = false;
          }
@@ -212,9 +225,7 @@ function create_account()
         {
            popupWarning("Username's length must be of 6 or more characters")
         }
-       else if(await check_user(user) == 'exist'){ 
-          popupWarning("Username already exist!!")
-         }
+       
       }
     
     b.onclick = async (e)=>{
@@ -225,30 +236,36 @@ function create_account()
         if(Elem_id('fname').value == '')
         {
           popupWarning("First name can't be empty!!");
+          b.disabled = false;
           return false;
         }
 
         if(Elem_id('uname2').value=='')
         {
           popupWarning("Username can't be empty!!");
+          b.disabled = false;
           return false;
         }
         if(Elem_id('uname2').value.length < 6){
             popupWarning("Username's length must be of 6 or more characters");
+            b.disabled = false;
             return false;
         }
         if(Elem_id('pwd2').value.length<8)
         {
           popupWarning('Password must be 8 or more character long!!')
+          b.disabled = false;
           return false;
         }
 
         if(mail == "not valid" || Elem_id('mail_in').value == '')
         {popupWarning('Email not valid');
+          b.disabled = false;
              return false;}
 
         if(phno == "not valid")
         {popupWarning('Phone number not valid');
+          b.disabled = false;
              return false;}
  
          fetch('/create',{

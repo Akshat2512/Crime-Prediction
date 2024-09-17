@@ -15,19 +15,19 @@ db_cred = sys.argv
 app = Flask(__name__)
 
 def connect_database():
-    connection = MySQLdb.connect(host=db_cred[1],
-                             port=int(db_cred[2]),
-                             user=db_cred[3],
-                             password=db_cred[4],
-                             db=db_cred[5],
-                             cursorclass=MySQLdb.cursors.DictCursor)
+    # connection = MySQLdb.connect(host=db_cred[1],
+    #                          port=int(db_cred[2]),
+    #                          user=db_cred[3],
+    #                          password=db_cred[4],
+    #                          db=db_cred[5],
+    #                          cursorclass=MySQLdb.cursors.DictCursor)
 
-    # connection = MySQLdb.connect(host='localhost',
-    #                              port=3306,
-    #                              user='root',
-    #                              password='password',
-    #                              db='mydb',
-    #                              cursorclass=MySQLdb.cursors.DictCursor)
+    connection = MySQLdb.connect(host='localhost',
+                                 port=3306,
+                                 user='root',
+                                 password='password',
+                                 db='mydb',
+                                 cursorclass=MySQLdb.cursors.DictCursor)
 
     cursor = connection.cursor()
     return cursor, connection
@@ -114,8 +114,6 @@ def create_user():
 
 
     query = f"INSERT INTO `users`(`first_name`, `middle_name`, `last_name`, `age`,  `username`, `passhash`, `email`, `country`, `phone`, `salt` ) VALUES ("
-
-    print(req_data.items())
 
     for x, y in req_data.items():
       i=i+1
