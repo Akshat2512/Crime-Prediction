@@ -173,7 +173,7 @@ def update():
 
 @app.route('/ch_pwd', methods=['POST'])
 def change_password():
-    cursor, _ = connect_database()
+    cursor, connection = connect_database()
 
     data = request.json
 

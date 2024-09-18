@@ -426,7 +426,6 @@ function change_password(){
 
    function account_set(){
      var jsn = {'username': uname.value, 'o_pwd': o_pwd.value, 'n_pwd': n_pwd.value, 'c_pwd':c_pwd.value} 
-     console.log(jsn)
      return jsn
    }
  
