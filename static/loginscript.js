@@ -174,6 +174,8 @@ function check_user(user)
      else if(data == 'exist'){
       Elem_id('chk_usr').style.cssText='background-color: red';
       Elem_id('acc-content').querySelector('button').disabled=true; 
+      popupWarning('Username already exists!!')
+     
      }
     }, 1000);
   
@@ -312,6 +314,22 @@ function create_account()
  
 }
 
+
+async function check_usrfp(user)
+ {  
+   
+      var response = await fetch('/check_user',{
+        method: "POST",
+        headers:{"Content-Type" :"application/json"},
+        body:JSON.stringify(user)
+        });
+
+      data = await response.text();
+      return data
+    
+ }
+
+
 function change_password(){
    
     var x = Elem_id('select-page').querySelectorAll('a');
@@ -325,13 +343,13 @@ function change_password(){
     var b = Elem_id('pwd-content').querySelector('button');
     setTimeout(()=>{
 
-        uname.oninput = async()=>{
+        uname.oninput = async ()=>{
            
           if(uname.value.length < 6 )
           {
               s_warn[0].style.cssText='background-color: red';
           }
-         else if(await check_user(uname.value) == 'exist'){ 
+         else if(await check_usrfp(uname.value) == 'exist'){ 
             s_warn[0].style.cssText='background-color: green';
            }
           else{
@@ -344,7 +362,7 @@ function change_password(){
             {
                 popupWarning('Username must be 6 or more characters long !!')
             }
-           else if(await check_user(uname.value) == 'not exist'){ 
+           else if(await check_usrfp(uname.value) == 'not exist'){ 
                 popupWarning('Username not exist !!')
              }
           
@@ -415,7 +433,7 @@ function change_password(){
    b.onclick = async ()=>{
  
 
-    if(await check_user(uname.value) == 'not exist'){ 
+    if(await check_usrfp(uname.value) == 'not exist'){ 
         popupWarning("Username not exists!!")
         return false;
     }
@@ -450,11 +468,11 @@ function change_password(){
               x[0].click();
             }
          else if(data == 'same as old')
-            popupWarning("Password cannot be same as your old password!!")
+              popupWarning("Password cannot be same as your old password!!")
          else if(data == "not exist")
               popupWarning('Username not exists!!')
          else if(data == "Incorrect!!")
-            popupWarning('Old password Incorrect!!')
+              popupWarning('Old password Incorrect!!')
 
         }).catch(error=>popupWarning(error));
 }
