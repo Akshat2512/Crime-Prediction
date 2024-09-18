@@ -426,6 +426,7 @@ function change_password(){
 
    function account_set(){
      var jsn = {'username': uname.value, 'o_pwd': o_pwd.value, 'n_pwd': n_pwd.value, 'c_pwd':c_pwd.value} 
+     console.log(jsn)
      return jsn
    }
  
@@ -435,6 +436,7 @@ function change_password(){
 
     if(await check_usrfp(uname.value) == 'not exist'){ 
         popupWarning("Username not exists!!")
+        s_warn[0].style.cssText='background-color:red'
         return false;
     }
     if(uname.value=='')
@@ -458,21 +460,21 @@ function change_password(){
           headers:{"Content-Type" :"application/json"},
           body: JSON.stringify(account_set())
         }).then(response=>response.text()).then(data=>{
-            console.log(data)
+            console.log(data);
           if(data == "Success")
             { 
-              popupWarning('Password successfully Changed!!!')
+              popupWarning('Password successfully Changed!!!');
               o_pwd.value = "";
               n_pwd.value = "";
               c_pwd.value = "";
               x[0].click();
             }
          else if(data == 'same as old')
-              popupWarning("Password cannot be same as your old password!!")
+              popupWarning("Password cannot be same as your old password!!");
          else if(data == "not exist")
-              popupWarning('Username not exists!!')
+              popupWarning('Username not exists!!');
          else if(data == "Incorrect!!")
-              popupWarning('Old password Incorrect!!')
+              popupWarning('Old password Incorrect!!');
 
         }).catch(error=>popupWarning(error));
 }
