@@ -4,7 +4,7 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 Features
 <ol type='1'>
 <li>Login page: User can Create, Login in his Account, user data will be saved in the database.</li>
-<li>API Integration:  With the Integration of [Mapbox APIs](https://fyleuniverse.notion.site/Frontend-Development-Challenge-091d1fad48d94c6a9de0c02465cc640a), allows visualization of crime Hotspots and clusters on maps.</li>
+<li>API Integration:  With the Integration of [text](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on maps.</li>
 <li>Crime Analysis: The app provides crime analysis using graphs and displayed on map alongside.</li>
 <li>Crime Prediction: The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.</li>
 </ol>
