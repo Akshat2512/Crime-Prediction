@@ -17,7 +17,7 @@ Here’s a sneak peek of the frontend:
 
 <p align="center">
     <span>
-    <img src="Extra/frontend_1.png" alt="Image 1" style="height: 300px; width: 400px"><br>
+    <img src="Extra/frontend_1.png" alt="Image 1" style="height: 150px; width: 200px"><br>
      Fig. 1 Login page
     </span> &nbsp&nbsp
     <span>
