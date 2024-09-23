@@ -22,10 +22,10 @@ Fig. 1. User Login Page
 </p>
 
 
-After login your page, you will redirect to the main page. And If you click the user icon in the top rigth corner, it will scroll out your account information. You can also edit your account details, if required.
+After you login your page, you will be redirected to the main page. And If you click the user icon in the top right corner, it will scroll out your account information. You can also edit your account details, if required.
 <p align="center">
 <img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px">
-<img src="Extra/frontend_8.png" alt="Image 2" style="height: 250px; width: 400px"><br>
+<img src="Extra/frontend_8.png" alt="Image 2" style="height: 250px; width: 200px"><br>
 Fig. 2. Main Page
 </p>
 
