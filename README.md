@@ -47,8 +47,7 @@ The backend is built using Python Flask web framework which is responsible for h
 
 
 - Database:
-The MySQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other profile details. Database is connected through SSH tunneling protocol 
-  "The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data"
+The MySQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other profile details. Database is connected through SSH tunneling protocol. The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data"
 
 Here's the System Architecture Diagram of this Application:
 <p align="center">
