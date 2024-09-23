@@ -11,7 +11,7 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 
 ## How It Works
 - Frontend:
-The frontend is built using modern web technologies such as HTML5, CSS, Javascript and Python Flask. It provides a user-friendly interface for interacting with the app. With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on maps. Used libraries like Chart.js, allows visualize crimes using charts and graphs. I have also integrated Mapbox APIs, to provide better crime analysis using Maps,  Hotspots and Clusters.
+The frontend is built using modern web technologies such as HTML5, CSS, Javascript and Python Flask. It provides a user-friendly interface for interacting with the app. With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on 3D maps. Also, used libraries like Chart.js, which allows better visualization of crimes using charts and graphs.
 
 Here’s a sneak peek of the frontend: 
 
@@ -22,17 +22,17 @@ Fig. 1. User Login Page
 </p>
 
 
-After you login your page, you will be redirected to the main page. And If you click the user icon in the top right corner, it will scroll out your account information. You can also edit your account details, if required.
+After logging in, you’ll be automatically redirected to the main page. If you click the user icon in the top right corner, your account information will slide out. From there, you can edit your account details if needed
 <p align="center">
 <img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px">&nbsp&nbsp
 <img src="Extra/frontend_8.png" alt="Image 2" style="height: 250px; width: 200px"><br>
 Fig. 2. View of the Main Page
 </p>
-
+This is the Crime Analysis Section 
 <p align="center">
-<img src="Extra/frontend_3.png" alt="Image 1" style="height: 250px; width: 400px">
-<img src="Extra/frontend_4.png" alt="Image 1" style="height: 250px; width: 400px"><br>
-<img src="Extra/frontend_5.png" alt="Image 1" style="height: 250px; width: 400px">
+<img src="Extra/frontend_3.png" alt="Image 1" style="height: 250px; width: 400px">&nbsp&nbsp
+<img src="Extra/frontend_4.png" alt="Image 1" style="height: 250px; width: 400px"><br><br>
+<img src="Extra/frontend_5.png" alt="Image 1" style="height: 250px; width: 400px">&nbsp&nbsp
 <img src="Extra/frontend_6.png" alt="Image 1" style="height: 250px; width: 400px"><br>
 Fig. 3. User Login Page
 </p>
@@ -41,7 +41,6 @@ Fig. 3. User Login Page
 
 Fig. 3. User Login Page
 </p>
-
 
 - Backend:
 The backend is responsible for handling the requests (such as create user, check user, authenticate user, change password etc.), maintaining user database, model inference, and returning the analysis and prediction results. /
