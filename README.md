@@ -2,12 +2,12 @@
 The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas with the help of various machine learning algorithms, allowing for timely intervention and proper resource allocation. By leveraging machine learning techniques, this app analyzes historical trends of crimes of cities like New York, Chicago and predicts future crimes.
 
 Features
-<ol type='1'>
-<li>Login page: User can Create, Login in his Account, user data will be saved in the database.</li>
-<li>API Integration:  With the Integration of [View Project](https://akshat2512.github.io/OCTANET/ToDoList/ToDoList.html), allows visualization of crime Hotspots and clusters on maps.</li>
-<li>Crime Analysis: The app provides crime analysis using graphs and displayed on map alongside.</li>
-<li>Crime Prediction: The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.</li>
-</ol>
+
+- Login page: User can Create, Login in his Account, user data will be saved in the database.
+- API Integration:  With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on maps.
+- Crime Analysis: The app provides crime analysis using graphs and displayed on map alongside.
+- Crime Prediction: The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.
+
 
 ## How It Works
 - Frontend:
