@@ -30,12 +30,13 @@ Fig. 2. View of the Main Page
 </p>
 
 <p align="center">
-<img src="Extra/frontend_3.png" alt="Image 1" style="height: 250px; width: 400px"><br>
+<img src="Extra/frontend_3.png" alt="Image 1" style="height: 250px; width: 400px">
+<img src="Extra/frontend_4.png" alt="Image 1" style="height: 250px; width: 400px"><br>
 Fig. 3. User Login Page
 </p>
 
 <p align="center">
-<img src="Extra/frontend_4.png" alt="Image 1" style="height: 250px; width: 400px"><br>
+
 Fig. 3. User Login Page
 </p>
 
