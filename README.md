@@ -6,7 +6,7 @@ Features
 <li>Login page: User can Create, Login in his Account, user data will be saved in the database.</li>
 <li>API Integration:  With the Integration of Mapbox APIs, allows visualization of crimes Hotspot and clusters on Maps.</li>
 <li>Crime Analysis: The app provides crime analysis using graphs and displayed on map alongside.</li>
-<li>Crime Prediction: The prediction results of the selected city are displayed, making it easy for users to see future crimes on map.</li>
+<li>Crime Prediction: The prediction results of the selected city are displayed, making it easy for users to see future crimes graphically.</li>
 </ol>
 
 ## How It Works
