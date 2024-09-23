@@ -16,8 +16,14 @@ The frontend is built using modern web technologies such as HTML5, CSS, Javascri
 Here’s a sneak peek of the frontend: 
 
 <p align="center">
-    <img src="Extra/frontend_1.png" alt="Image 1" style="height: 250px; width: 400px">&nbsp&nbsp
-    <img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px">
+    <p align="center">
+    <img src="Extra/frontend_1.png" alt="Image 1" style="height: 250px; width: 400px"><br>
+    Fig. 1. User Login Page
+    </p>
+    <p align="center">
+    <img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px"><br>
+    Fig. 2. Main Page
+    </p>
 </p>
 
 - Image Processing:
