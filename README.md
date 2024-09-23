@@ -4,7 +4,7 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 ## Features
 
 - <b>Login page:</b> User can create, login account, user data will be saved in the database.
-- <b>Change Maps:</b> User can change map layers (eg, Streets, Satellite, etc.)
+- <b>Switch Map Layers:</b> User can change map layers (eg, Streets, Satellite, etc.)
 - <b>Crime Analysis:</b> The app provides a new way to analyze crimes using graphs and displayed on map alongside.
 - <b>Crime Prediction:</b> The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.
 
