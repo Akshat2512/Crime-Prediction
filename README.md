@@ -59,5 +59,5 @@ Once the backend processes the data, it returns the prediction results to the fr
 The frontend displays this information to the user.
 
 <p align="center">
-<img src="Extra/frontend_7.png" alt="flowchart" style="height: 500px">
+<img src="Extra/frontend_7.png" alt="flowchart" style="height: 250px; width: 400px">
 </p>
