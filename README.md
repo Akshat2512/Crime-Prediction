@@ -41,7 +41,7 @@ Fig. 3. User Login Page
 
 <p align="center">
 <img src="Extra/frontend_5.png" alt="Image 1" style="height: 250px; width: 400px">
-<img src="Extra/frontend_6.png" alt="Image 1" style="height: 250px; width: 400px">
+<img src="Extra/frontend_6.png" alt="Image 1" style="height: 250px; width: 400px"><br>
 Fig. 3. User Login Page
 </p>
 
