@@ -4,14 +4,14 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 ## Features
 
 - <b>Login page:</b> User can Create, Login in his Account, user data will be saved in the database.
-- <b>API Integration:</b>  With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on maps.
-- <b>Crime Analysis:</b> The app provides crime analysis using graphs and displayed on map alongside.
+- <b>Change Maps:</b> User can change map layers (eg, Streets, Satellite, etc.)
+- <b>Crime Analysis:</b> The app provides a new way to analyze crimes using graphs and displayed on map alongside.
 - <b>Crime Prediction:</b> The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.
 
 
 ## How It Works
 - Frontend:
-The frontend is built using modern web technologies such as HTML5, CSS, Javascript and Python Flask. It provides a user-friendly interface for interacting with the app. I have also integrated Mapbox APIs, to provide better crime analysis using graphs, Hotspots and Clusters.
+The frontend is built using modern web technologies such as HTML5, CSS, Javascript and Python Flask. It provides a user-friendly interface for interacting with the app. With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on maps. Used libraries like Chart.js, allows visualize crimes using charts and graphs. I have also integrated Mapbox APIs, to provide better crime analysis using Maps,  Hotspots and Clusters.
 
 Here’s a sneak peek of the frontend: 
 
@@ -40,21 +40,19 @@ Fig. 3. User Login Page
 </p>
 
 <p align="center">
-<img src="Extra/frontend_5.png" alt="Image 1" style="height: 250px; width: 400px"><br>
+<img src="Extra/frontend_5.png" alt="Image 1" style="height: 250px; width: 400px">
+<img src="Extra/frontend_6.png" alt="Image 1" style="height: 250px; width: 400px">
 Fig. 3. User Login Page
 </p>
 
 <p align="center">
-<img src="Extra/frontend_6.png" alt="Image 1" style="height: 250px; width: 400px"><br>
+
 Fig. 3. User Login Page
 </p>
 
-- Send Request:
-When a user captures or uploads an image, the frontend sends it to the backend for analysis.
-The backend processes the image using a pre-trained deep learning model (such as a convolutional neural network) specifically trained for plant disease classification.
 
 - Backend:
-The backend is responsible for handling image processing, model inference, and returning the prediction results.
+The backend is responsible for handling the requests (such as create user, check user, authenticate user, change password etc.), maintaining user database, model inference, and returning the analysis and prediction results. /
 Here's the System Architecture Diagram of this Application:
 <p align="center">
 <img src="Extra/plant_disease.drawio.png" alt="flowchart" style="height: 500px">
