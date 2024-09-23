@@ -1,22 +1,29 @@
 ## Overview
-The Plant Disease Detection App is an innovative solution that helps farmers identify diseases in their crops early, allowing for timely intervention. By leveraging machine learning techniques, this app analyzes images of plant leaves and provides accurate disease predictions.
+The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas with the help of various machine learning algorithms, allowing for timely intervention and proper resource allocation. By leveraging machine learning techniques, this app analyzes historical trends of crimes of cities like New York, Chicago and predicts future crimes.
 
 Features
 <ol type='1'>
-<li>Image Upload: Users can upload or capture images of plant leaves directly through the app.</li>
-<li>Disease Prediction: The app processes the uploaded image and predicts the type of disease affecting the plant.</li>
-<li>Visual Feedback: The prediction results are displayed alongside the input image, making it easy for users to understand.</li>
+<li>Login page: User can Create, Login in his Account, user data will be saved in the database.</li>
+<li>API Integration:  With the Integration of Mapbox APIs, allows visualization of crimes Hotspot and clusters on Maps.</li>
+<li>Crime Analysis: The app provides crime analysis using graphs and displayed on map alongside.</li>
+<li>Crime Prediction: The prediction results of the selected city are displayed, making it easy for users to see future crimes on map.</li>
 </ol>
 
 ## How It Works
 - Frontend:
-The frontend is built using modern web technologies such as HTML5, CSS and Javascript. It provides a user-friendly interface for interacting with the app. This app is suitable for both desktop and Mobile devices. Even for low end devices.  
+The frontend is built using modern web technologies such as HTML5, CSS, Javascript and Python Flask. It provides a user-friendly interface for interacting with the app. I have also integrated Mapbox APIs, to provide better crime analysis using graphs, Hotspots and Clusters.
 
 Here’s a sneak peek of the frontend: 
 
 <p align="center">
-<img src="Extra/frontend_1.jpg" alt="Image 1" style="height: 500px"> &nbsp&nbsp
-<img src="Extra/frontend_2.jpg" alt="Image 2" style="height: 500px">
+    <span>
+    <img src="Extra/frontend_1.jpg" alt="Image 1" style="height: 500px"><br>
+     Fig. 1 Login page
+    </span> &nbsp&nbsp
+    <span>
+    <img src="Extra/frontend_2.jpg" alt="Image 2" style="height: 500px"><br>
+     Fig. 2 This is the main page
+    </span>
 </p>
 
 - Image Processing:
