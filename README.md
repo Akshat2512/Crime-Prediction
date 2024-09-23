@@ -15,18 +15,23 @@ The frontend is built using modern web technologies such as HTML5, CSS, Javascri
 
 Here’s a sneak peek of the frontend: 
 
-
+This is the user's login page. Here, you can login and create your new account and even change the password of your account.
 <p align="center">
 <img src="Extra/frontend_1.png" alt="Image 1" style="height: 250px; width: 400px"><br>
 Fig. 1. User Login Page
 </p>
+
+
+After login your page, you will redirect to the main page. And If you click the user icon in the top rigth corner, it will scroll out your account information. You can also edit your account details, if required.
 <p align="center">
-<img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px"><br>
+<img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px">
+<img src="Extra/frontend_8.png" alt="Image 2" style="height: 250px; width: 400px"><br>
 Fig. 2. Main Page
 </p>
 
 
-- Image Processing:
+
+- Send Request:
 When a user captures or uploads an image, the frontend sends it to the backend for analysis.
 The backend processes the image using a pre-trained deep learning model (such as a convolutional neural network) specifically trained for plant disease classification.
 
