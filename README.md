@@ -1,7 +1,7 @@
 ## Overview
 The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas with the help of various machine learning algorithms, allowing for timely intervention and proper resource allocation. By leveraging machine learning techniques, this app analyzes historical trends of crimes of cities like New York, Chicago and predicts future crimes.
 
-Features
+## Features
 
 - Login page: User can Create, Login in his Account, user data will be saved in the database.
 - API Integration:  With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on maps.
