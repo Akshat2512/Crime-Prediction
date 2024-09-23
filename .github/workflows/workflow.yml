@@ -1,46 +1,46 @@
-name: Flask Server
+# name: Flask Server
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
     
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2 
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2 
 
-      - name: Install pip Dependencies
-        uses: actions/setup-python@v4
-        with:
-         python-version: '3.10'
-         cache: 'pip'
+#       - name: Install pip Dependencies
+#         uses: actions/setup-python@v4
+#         with:
+#          python-version: '3.10'
+#          cache: 'pip'
 
-      - run: |
-            pip install -r requirements.txt
+#       - run: |
+#             pip install -r requirements.txt
 
      
 
-      - name: Set up ngrok
-        run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
+#       - name: Set up ngrok
+#         run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
 
-      - name: forward port to web
-        run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
+#       - name: forward port to web
+#         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
 
-      - name: Starting application
-        run: | 
-            sudo service mysql start && python app.py \
-            'rnjkv-2409-40d1-d7-2c6f-b1b4-9787-c97-33e3.a.free.pinggy.link' \
-            '41409' \
-            'root' \
-            'password' \
-            'mydb' \
+#       - name: Starting application
+#         run: | 
+#             sudo service mysql start && python app.py \
+#             'rnjkv-2409-40d1-d7-2c6f-b1b4-9787-c97-33e3.a.free.pinggy.link' \
+#             '41409' \
+#             'root' \
+#             'password' \
+#             'mydb' \
              
 
-      - run: sleep 600      
+#       - run: sleep 600      
 
   
 
