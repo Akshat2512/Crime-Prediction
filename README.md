@@ -3,7 +3,7 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 
 ## Features
 
-- <b>Login page:</b> User can Create, Login in his Account, user data will be saved in the database.
+- <b>Login page:</b> User can create, login account, user data will be saved in the database.
 - <b>Change Maps:</b> User can change map layers (eg, Streets, Satellite, etc.)
 - <b>Crime Analysis:</b> The app provides a new way to analyze crimes using graphs and displayed on map alongside.
 - <b>Crime Prediction:</b> The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.
@@ -11,7 +11,7 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 
 ## How It Works
 - Frontend:
-The frontend is built using modern web technologies such as HTML5, CSS, Javascript and Python Flask. It provides a user-friendly interface for interacting with the app. With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on 3D maps. Also, used libraries like Chart.js, which allows better visualization of crimes using charts and graphs.
+The frontend is built using modern web technologies such as HTML5, CSS, Javascript. It provides a user-friendly interface for interacting with the app. With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on 3D maps. Also, used libraries like Chart.js, which allows better visualization of crimes using charts and graphs.
 
 Here’s a sneak peek of the frontend: 
 
@@ -43,12 +43,22 @@ Fig. 3. User Login Page
 </p>
 
 - Backend:
-The backend is responsible for handling the requests (such as create user, check user, authenticate user, change password etc.), maintaining user database, model inference, and returning the analysis and prediction results. /
+The backend is built using Python Flask web framework which is responsible for handling the incoming requests from clients (such as create user, check user, authenticate, change password etc.) and keep maintaining user database, model inference, and returning the analysis and prediction results. 
+
+
+- Database:
+The MySQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other profile details. Database is connected through SSH tunneling protocol 
+  "The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data"
+
 Here's the System Architecture Diagram of this Application:
 <p align="center">
-<img src="Extra/plant_disease.drawio.png" alt="flowchart" style="height: 500px">
+<img src="Extra/sys_arch.drawio.png" alt="flowchart" style="height: 500px">
 </p>
 
 - Prediction Results:
-Once the backend processes the image, it returns the predicted disease class with species (e.g., Apple Cedar Rust, Potato Early Blight, Peach Bacterial Spot, etc) to the frontend.
+Once the backend processes the data, it returns the prediction results to the frontend.
 The frontend displays this information to the user.
+
+<p align="center">
+<img src="Extra/frontend_7.png" alt="flowchart" style="height: 500px">
+</p>
