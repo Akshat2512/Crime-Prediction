@@ -15,16 +15,16 @@ The frontend is built using modern web technologies such as HTML5, CSS, Javascri
 
 Here’s a sneak peek of the frontend: 
 
+
 <p align="center">
-    <span align="center">
-    <img src="Extra/frontend_1.png" alt="Image 1" style="height: 250px; width: 400px"><br>
-    Fig. 1. User Login Page
-    </span>
-    <span align="center">
-    <img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px"><br>
-    Fig. 2. Main Page
-    </span>
+<img src="Extra/frontend_1.png" alt="Image 1" style="height: 250px; width: 400px"><br>
+Fig. 1. User Login Page
 </p>
+<p align="center">
+<img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px"><br>
+Fig. 2. Main Page
+</p>
+
 
 - Image Processing:
 When a user captures or uploads an image, the frontend sends it to the backend for analysis.
