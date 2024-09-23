@@ -8,6 +8,11 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 - <b>Crime Analysis:</b> The app provides a new way to analyze crimes using graphs and displayed on map alongside.
 - <b>Crime Prediction:</b> The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.
 
+Here's the System Architecture Diagram of this Application:
+<p align="center">
+<img src="Extra/sys_arch.drawio.png" alt="flowchart" style="height: 500px">
+</p>
+
 
 ## How It Works
 - Frontend:
@@ -37,10 +42,6 @@ This is the Crime Analysis Section
 Fig. 3. User Login Page
 </p>
 
-<p align="center">
-
-Fig. 3. User Login Page
-</p>
 
 - Backend:
 The backend is built using Python Flask web framework which is responsible for handling the incoming requests from clients (such as create user, check user, authenticate, change password etc.) and keep maintaining user database, model inference, and returning the analysis and prediction results. 
@@ -49,9 +50,9 @@ The backend is built using Python Flask web framework which is responsible for h
 - Database:
 The MySQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other profile details. Database is connected through SSH tunneling protocol. The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data"
 
-Here's the System Architecture Diagram of this Application:
+This database is maintained in my Local Machine
 <p align="center">
-<img src="Extra/sys_arch.drawio.png" alt="flowchart" style="height: 500px">
+<img src="Extra/database.png" alt="flowchart" style="height: 500px">
 </p>
 
 - Prediction Results:
