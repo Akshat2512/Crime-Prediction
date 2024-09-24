@@ -14,8 +14,7 @@ Here's the System Architecture Diagram of this Application:
 </p>
 
 #### Technology Stack
-
-HTML, CSS, Javascript, Python, Flask, Mysql, Machine Learning, REST APIs, Mapbox API
+HTML, CSS, Javascript, Python, Flask, Mysql, Machine Learning, REST APIs, Mapbox API, ngrok
 
 ## How It Works
 - Frontend:
@@ -66,5 +65,5 @@ This database is maintained in the Local Machine through ssh tunneling
 Once the backend processes the data, it returns the prediction results to the frontend.
 The frontend displays this information to the user.
 
-- ngrok tunnel
+- Ngrok:
 The ngrok tunnel used to expose local development environment to the web having url - key-grizzly-directly.ngrok-free.app
