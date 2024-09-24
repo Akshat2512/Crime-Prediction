@@ -66,5 +66,5 @@ This database is maintained in the Local Machine through ssh tunneling
 Once the backend processes the data, it returns the prediction results to the frontend.
 The frontend displays this information to the user.
 
--ngrok tunnel
+- ngrok tunnel
 The ngrok tunnel used to expose local development environment to the web having url - key-grizzly-directly.ngrok-free.app
