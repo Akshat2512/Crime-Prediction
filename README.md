@@ -1,25 +1,25 @@
 ## Overview
-The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas with the help of various machine learning algorithms, allowing for timely intervention and proper resource allocation. By leveraging machine learning techniques, this app analyzes historical crime trends of cities like New York, Chicago and predicts future crime rates.
+The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas effectively. By harnessing various machine learning algorithms, it enables timely intervention and proper resource allocation. This app analyzes historical crime trends of cities like New York, Chicago and predicts future crime rates.
 
 ## Features
 
 - <b>Login page:</b> User can create, login account, user data will be saved in the database.
 - <b>Switch Map Layers:</b> User can change map layers (eg, Streets, Satellite, etc.)
-- <b>Crime Analysis:</b> The app provides a new way to analyze crimes using graphs and displayed on map alongside.
-- <b>Crime Prediction:</b> The prediction results of the selected city are displayed, making it easy for users to analyse future crimes graphically.
+- <b>Crime Analysis:</b> The app provides a new way to analyze crimes using graphs displayed alongside the map.
+- <b>Crime Prediction:</b> The prediction results for the selected city are displayed, making it easy for users to analyze future crimes graphically.
 
 Here's the System Architecture Diagram of this Application:
 <p align="center">
 <img src="Extra/sys_arch.drawio.png" alt="flowchart" style="height: 500px">
 </p>
 
-### Technology Used
+#### Technology Stack
 
 HTML, CSS, Javascript, Python, Flask, Mysql, Machine Learning, REST APIs, Mapbox API
 
 ## How It Works
 - Frontend:
-The frontend is built using modern web technologies such as HTML5, CSS, Javascript. It provides a user-friendly interface for interacting with the app. With the Integration of [Mapbox APIs](https://docs.mapbox.com/), allows visualization of crime Hotspots and clusters on 3D maps. Also, used libraries like Chart.js, which allows better visualization of crimes using charts and graphs.
+The frontend is built using modern web technologies such as HTML5, CSS, Javascript. It provides a user-friendly interface for interacting with the app. By integrating [Mapbox APIs](https://docs.mapbox.com/), it enables the visualization of crime Hotspots and clusters on 3D map. Also, used libraries like Chart.js, which enhance the visualization of crime data through charts and graphs.
 
 Here’s a sneak peek of the frontend: 
 
@@ -34,7 +34,7 @@ After logging in, you’ll be automatically redirected to the main page. If you 
 <p align="center">
 <img src="Extra/frontend_2.png" alt="Image 2" style="height: 250px; width: 400px">&nbsp&nbsp
 <img src="Extra/frontend_8.png" alt="Image 2" style="height: 250px; width: 200px"><br>
-Fig. 2. View of the Main Page
+Fig. 2. Main Page
 </p>
  
 <p align="center">
@@ -57,7 +57,7 @@ The backend is built using Python Flask web framework which is responsible for h
 - Database:
 The MySQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other profile details. Database is connected through SSH tunneling protocol. The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data"
 
-This database is maintained in my Local Machine
+This database is maintained in the Local Machine through ssh tunneling
 <p align="center">
 <img src="Extra/database.png" alt="flowchart" style="height: 200px; ">
 </p>
