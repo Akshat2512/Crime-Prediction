@@ -33,15 +33,19 @@ After logging in, you’ll be automatically redirected to the main page. If you 
 <img src="Extra/frontend_8.png" alt="Image 2" style="height: 250px; width: 200px"><br>
 Fig. 2. View of the Main Page
 </p>
-This is the Crime Analysis Section 
+ 
 <p align="center">
 <img src="Extra/frontend_3.png" alt="Image 1" style="height: 250px; width: 400px">&nbsp&nbsp
 <img src="Extra/frontend_4.png" alt="Image 1" style="height: 250px; width: 400px"><br>
 <img src="Extra/frontend_5.png" alt="Image 1" style="height: 250px; width: 400px">&nbsp&nbsp
 <img src="Extra/frontend_6.png" alt="Image 1" style="height: 250px; width: 400px"><br>
-Fig. 3. User Login Page
+Fig 3. Crime Analysis Section
 </p>
 
+<p align="center">
+<img src="Extra/frontend_7.png" alt="flowchart" style="height: 250px; width: 400px"><br>
+Fig.4 Crime Prediction Section
+</p>
 
 - Backend:
 The backend is built using Python Flask web framework which is responsible for handling the incoming requests from clients (such as create user, check user, authenticate, change password etc.) and keep maintaining user database, model inference, and returning the analysis and prediction results. 
@@ -59,6 +63,3 @@ This database is maintained in my Local Machine
 Once the backend processes the data, it returns the prediction results to the frontend.
 The frontend displays this information to the user.
 
-<p align="center">
-<img src="Extra/frontend_7.png" alt="flowchart" style="height: 250px; width: 400px">
-</p>
