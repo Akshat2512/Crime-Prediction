@@ -51,7 +51,7 @@ Fig.4 Crime Prediction Section
 </p>
 
 - Backend:
-The backend is built using Python Flask web framework which is responsible for handling the incoming requests from clients (such as create user, check user, authenticate, change password etc.) and keep maintaining user database, model inference, and returning the analysis and prediction results. 
+The backend is built using Python Flask web framework which is responsible for handling the incoming requests from clients (such as create user, check user, authenticate, change password etc.) and maintaining user database, model inference, and returning the analysis or prediction results. 
 
 
 - Database:
