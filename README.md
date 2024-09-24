@@ -13,7 +13,7 @@ Here's the System Architecture Diagram of this Application:
 <img src="Extra/sys_arch.drawio.png" alt="flowchart" style="height: 500px">
 </p>
 
-# Technology Used
+### Technology Used
 
 HTML, CSS, Javascript, Python, Flask, Mysql, Machine Learning, REST APIs, Mapbox API
 
