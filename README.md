@@ -56,7 +56,7 @@ The MySQL database in our application serves as the central repository for user-
 
 This database is maintained in my Local Machine
 <p align="center">
-<img src="Extra/database.png" alt="flowchart" style="height: 400px; ">
+<img src="Extra/database.png" alt="flowchart" style="height: 200px; ">
 </p>
 
 - Prediction Results:
