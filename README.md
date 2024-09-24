@@ -66,4 +66,4 @@ Once the backend processes the data, it returns the prediction results to the fr
 The frontend displays this information to the user.
 
 - Ngrok:
-The ngrok tunnel used to expose local development environment to the web having url - [Link](key-grizzly-directly.ngrok-free.app)
+The ngrok tunnel used to expose local development environment to the web having url - key-grizzly-directly.ngrok-free.app
