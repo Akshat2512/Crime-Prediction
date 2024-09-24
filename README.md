@@ -1,5 +1,5 @@
 ## Overview
-The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas with the help of various machine learning algorithms, allowing for timely intervention and proper resource allocation. By leveraging machine learning techniques, this app analyzes historical trends of crimes of cities like New York, Chicago and predicts future crimes.
+The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas with the help of various machine learning algorithms, allowing for timely intervention and proper resource allocation. By leveraging machine learning techniques, this app analyzes historical crime trends of cities like New York, Chicago and predicts future crime rates.
 
 ## Features
 
@@ -13,6 +13,9 @@ Here's the System Architecture Diagram of this Application:
 <img src="Extra/sys_arch.drawio.png" alt="flowchart" style="height: 500px">
 </p>
 
+# Technology Used
+
+HTML, CSS, Javascript, Python, Flask, Mysql, Machine Learning, REST APIs, Mapbox API
 
 ## How It Works
 - Frontend:
