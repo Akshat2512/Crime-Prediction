@@ -228,17 +228,7 @@ def check_user():
     username = request.json
     
     cursor.execute(f"Select username from users where username = '{username}';")
-    if rv:
-        response = jsonify(message="exist")
-    else:
-        response = jsonify(message="not exist")
-
-    # Add CORS headers
-    response.headers.add("Access-Control-Allow-Origin", "*")  # Allow requests from any origin
-    response.headers.add("Access-Control-Allow-Methods", "POST")  # Specify allowed methods
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type")  # Specify allowed headers
-
-    return response
+    
     rv = cursor.fetchall()
     if(rv):
      return "exist"
