@@ -33,8 +33,8 @@ jobs:
       - name: Starting application
         run: | 
             sudo service mysql start && python app.py \
-            'rntss-2409-40d1-1125-19d5-407e-9176-ce3a-8100.a.free.pinggy.link' \
-            '36869' \
+            'rnabe-152-59-118-41.a.free.pinggy.link' \
+            '38511' \
             'root' \
             'password' \
             'mydb' \
