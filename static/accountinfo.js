@@ -33,7 +33,7 @@ function fill_account_details(){
     
 var x = Elem_id('acc_info').querySelector('select');
 
-country_codes = {
+var country_codes = {
     "Afghanistan": ["+93", 9],
     "Albania": ["+355",10],
     "Bahrain": ["+213", 8],
@@ -47,7 +47,7 @@ country_codes = {
 }
 
 
-codes = Object.entries(country_codes);
+var codes = Object.entries(country_codes);
 
 codes.forEach(e => { 
     

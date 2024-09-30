@@ -145,6 +145,13 @@ if(req_data['city']=='Chicago'):
   y_test = y_test[(y_test.index >='2017') & (y_test.index <='2017-06-01')]
   pred_df = pred_df[pred_df.date<='2017-06-01']
 
+if(req_data['city']=='New_York'):
+  X_train = X_train[(X_train.index >= '2023-08') & (X_train.index <='2024') ]
+  y_train = y_train[(y_train.index >= '2023-08') & (y_train.index <='2024')]
+  X_test = X_test[(X_test.index >='2023-08') & (X_test.index <='2024')]
+  y_test = y_test[(y_test.index >='2023-08') & (y_test.index <='2024')]
+  pred_df = pred_df[pred_df.date<='2024']
+
 Act_X = '", "'.join(map(str, X_train.index))
 Act_y = ', '.join(map(str,pd.DataFrame(y_train)['Crime Count']))
 

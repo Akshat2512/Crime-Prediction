@@ -112,16 +112,7 @@ map.on('load', function() {
         curve: 1,
         easing: (t) => t * (2 - t)
       });
- 
-    
-      // map.on('click', function(e) {
-      //   var coordinates = e.lngLat;
-      //   new mapboxgl.Popup()
-      //       .setLngLat(coordinates)
-      //       .setHTML('Longitude: ' + coordinates.lng + '<br />Latitude: ' + coordinates.lat)
-      //       .addTo(map);
-      // });
-      // popup()
+swa
       
  
     });
@@ -230,6 +221,7 @@ const geolocate = new mapboxgl.GeolocateControl({
     var i=0;
     fly_to(z);
     pred_crimes();
+    pred_current();
      
   }
   
@@ -252,7 +244,7 @@ const geolocate = new mapboxgl.GeolocateControl({
 
   }
  
-var uncluster,rotate, popup;
+var uncluster, popup;
 var z=document.getElementById('pred').querySelector('select');
 
 z.onchange=()=>{
@@ -275,6 +267,7 @@ z.onchange=()=>{
   }
   
 }
+
 function fly_to(z){
   if(z.value == 'New_York')
     {map.flyTo({
@@ -302,7 +295,7 @@ function fly_to(z){
 }
 
 
- function loadclusters(geodata)
+function loadclusters(geodata)
  {
 
   Removesource();
@@ -397,7 +390,7 @@ function fly_to(z){
           loc = e.boro_nm;
         else
           loc = e.block; 
-        new mapboxgl.Popup()
+       popup = new mapboxgl.Popup()
         .setLngLat(event.features[0].geometry.coordinates)
         .setHTML(`<strong>Location:</strong> ${loc}<br>
         <strong>Offense:</strong> ${e.ofns_desc}<br>
@@ -412,10 +405,6 @@ function fly_to(z){
     });
     map.on('mouseleave', 'clusters', () => {
     map.getCanvas().style.cursor = '';});
-
-  
-
-    
 
     }
 
@@ -567,7 +556,7 @@ function loadheatmap(geodata)
           loc = e.boro_nm;
         else
           loc = e.block; 
-        new mapboxgl.Popup()
+       popup = new mapboxgl.Popup()
         .setLngLat(event.features[0].geometry.coordinates)
         .setHTML(`<strong>Location:</strong> ${loc}<br>
         <strong>Offense:</strong> ${e.ofns_desc}<br>

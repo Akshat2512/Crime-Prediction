@@ -284,6 +284,194 @@ async function pred_crimes(){
     }
 }
 
+var tg;
+async function pred_current(){
+ 
+    clearInterval(tg);
+     var coordinates;
+      if(z.value=='New_York')
+         coordinates = [-74.0059945, 40.7127492];
+      if(z.value=="Chicago")
+        coordinates = [-87.615, 41.874];
+
+      var curr_date = new Date().toLocaleDateString(); 
+      var jsn = {'city': z.value, 'model': 'XGBoost', 'date': curr_date}
+  
+      var data = JSON.stringify(jsn);
+
+      var response = await fetch(`/live`, {
+        method: "POST",
+        headers:{"Content-Type" :"application/json"},
+        body: data
+      })
+
+      var data = await response.json();
+
+      try{
+      popup.remove();
+      }
+      catch(e){ }
+
+      popup = new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`<div id="prediction-graph"><div></div><div><canvas id="Pred-Chart" style="width:250px; height: 145px"></canvas></div><div></div><button><</button><button>></button><button><i class="fa-solid fa-circle fa-fade" style="color: #ff0000;"></i> Live</button></div>`)
+            .addTo(map);
+      
+      var charts = document.getElementById(`Pred-Chart`).getContext('2d');
+      var myChart = new Chart(charts, {
+              type: "bar",
+      });
+
+      var set_time = document.querySelector('#prediction-graph div:nth-child(3)');
+      var set_date = document.querySelector('#prediction-graph div:nth-child(1)');
+
+    
+      var ch_hr = NaN;
+
+      var hr = new Date().getHours();
+
+      if(hr<10)
+            hr = String('0'+hr);
+     
+      var curr_index = `${new Date().toLocaleDateString().split('/').reverse().join('-')} ${hr}:00:00`;
+      curr_index = data.dates.indexOf(curr_index)-1;
+
+      var time;
+      var r = 0;
+      function start_timer(){
+
+          set_date.innerHTML = new Date().toDateString();
+          set_time.innerHTML = new Date().toLocaleTimeString();
+    
+           hr = new Date().getHours();
+         if(hr<10)
+            hr = String('0'+hr);
+      
+          if(hr != ch_hr)
+          {
+            ch_hr = hr;
+            curr_index++;
+            updatecurrentchart(myChart, data, curr_index, r);
+          }
+       
+      }
+      tg = setInterval(start_timer, 1000);
+    
+      var x = document.querySelectorAll('#prediction-graph button');
+      
+      
+     
+      x[0].onclick = () => {
+        clearInterval(tg);
+        time =  new Date(set_date.innerHTML+" "+set_time.innerHTML);
+        time.setHours(time.getHours()-1);
+        time.setMinutes(0);
+        time.setSeconds(0);
+        set_time.innerHTML = time.toLocaleTimeString();
+        set_date.innerHTML = time.toDateString();
+   
+        curr_index--;
+        r++;
+        updatecurrentchart(myChart, data, curr_index, r);
+        x[2].innerHTML = '<i class="fa-solid fa-circle"></i> Live'
+      }
+
+      x[1].onclick = ()=>{
+        clearInterval(tg);
+        
+        time =  new Date(set_date.innerHTML+" "+set_time.innerHTML);
+        time.setHours(time.getHours()+1);
+        time.setMinutes(0);
+        time.setSeconds(0);
+        set_time.innerHTML = time.toLocaleTimeString();
+        set_date.innerHTML = time.toDateString();
+
+        curr_index++;
+        r--;
+        updatecurrentchart(myChart, data, curr_index, r);
+        x[2].innerHTML = '<i class="fa-solid fa-circle"></i> Live';
+      }
+
+      x[2].onclick = ()=>{
+        
+        clearInterval(tg);
+        tg = setInterval(start_timer, 1000);
+        r=0;
+        curr_index = `${new Date().toLocaleDateString().split('/').reverse().join('-')} ${hr}:00:00`;
+        curr_index = data.dates.indexOf(curr_index);
+        
+        updatecurrentchart(myChart, data, curr_index, r);
+        x[2].innerHTML = '<i class="fa-solid fa-circle fa-fade" style="color: #ff0000;"></i> Live';
+      }
+}
+
+function updatecurrentchart(myChart, data, index, r){
+
+var max = data.dates[index+2];
+var min = data.dates[index-2];
+
+var max_ht = Math.max(...data.predictions.slice(index-2, index+3))+10;
+
+const u_data = {
+  labels: data.dates, // The labels for the X axis
+  datasets: [
+  {
+    data: data.predictions, // The data for the dataset
+    // fill: false, // Whether to fill the area under the line
+    borderColor: "green", // The color of the line
+    backgroundColor: data.predictions.map((value, i) => 
+      (i === index+r) ? 'rgba(255, 0, 0, 0.5)' : 'rgba(54, 162, 235, 0.2)'
+    ), // The color of the bars
+   
+  }]
+  
+}
+const options = {
+  responsive: true, // Whether to resize the chart according to the container size
+    legend: {
+      display: false
+    },
+  tooltips:{
+      mode: 'index'
+  },
+
+  scales: {
+        xAxes: [{
+          gridLines: {
+            display: false // Hide X-axis grid lines
+        },
+          ticks: {
+            min: min,
+            max: max,
+            display: false
+         
+          },
+        }],
+
+        yAxes: [{
+          gridLines: {
+            display: false // Hide X-axis grid lines
+          },
+          ticks: {
+            padding: 15,
+            display: true,
+            beginAtZero: false, // Whether to start the Y axis at zero
+            min: 0,
+            max: max_ht - max_ht%10,
+          }
+          }],
+       
+        }
+}
+
+
+myChart.data = u_data;
+myChart.options = options;
+myChart.update();
+
+}
+
+
 
 
 
@@ -325,7 +513,7 @@ function maximizestats(){
     sd.style.width = '600px';
     st.style.opacity = '1';
     graph.style.opacity = '1';
-    clearTimeout(g)
+    clearTimeout(g);
     document.getElementById('map').style.cssText = "width:80%;right: 0px;opacity: 1";
 
   }
@@ -414,7 +602,7 @@ async function statistics(z, data)
             false];
         map.setPaintProperty('crimes-point', 'circle-color', map_clr);
         map.setLayerZoomRange('crimes-point', 0, 20);
-        map.setFilter('crimes-point', filterdata)
+        map.setFilter('crimes-point', filterdata);
 
       }
       catch(error){
@@ -451,7 +639,6 @@ const myPieChart = new Chart(pctx, {
     plugins: {
       legend: false, // Hide the legend
       tooltip: false, // Disable tooltips
-    
   },
   tooltips: {
     callbacks: {

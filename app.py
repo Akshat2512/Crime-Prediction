@@ -15,19 +15,19 @@ db_cred = sys.argv
 app = Flask(__name__)
 
 def connect_database():
-    connection = MySQLdb.connect(host=db_cred[1],
-                             port=int(db_cred[2]),
-                             user=db_cred[3],
-                             password=db_cred[4],
-                             db=db_cred[5],
-                             cursorclass=MySQLdb.cursors.DictCursor)
+    # connection = MySQLdb.connect(host=db_cred[1],
+    #                          port=int(db_cred[2]),
+    #                          user=db_cred[3],
+    #                          password=db_cred[4],
+    #                          db=db_cred[5],
+    #                          cursorclass=MySQLdb.cursors.DictCursor)
 
-    # connection = MySQLdb.connect(host='localhost',
-    #                              port=3306,
-    #                              user='root',
-    #                              password='password',
-    #                              db='mydb',
-    #                              cursorclass=MySQLdb.cursors.DictCursor)
+    connection = MySQLdb.connect(host='localhost',
+                                 port=3306,
+                                 user='root',
+                                 password='password',
+                                 db='mydb',
+                                 cursorclass=MySQLdb.cursors.DictCursor)
 
     cursor = connection.cursor()
     return cursor, connection
@@ -248,6 +248,14 @@ def run_2():
     data = request.json
     data = json.dumps(data)
     output = subprocess.check_output(['python', 'filterdata.py', data])
+
+    return output
+
+@app.route('/live', methods=['POST'])
+def get_current_crime():
+    data = request.json
+    data = json.dumps(data)
+    output = subprocess.check_output(['python', 'currentcrime.py', data])
 
     return output
 

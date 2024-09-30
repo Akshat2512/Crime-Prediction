@@ -34,7 +34,7 @@
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
     align-self: center;
     border-top: none;
-    border-bottom-color: #fff
+    border-bottom-color: #ffffff
 }
 
 .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
@@ -48,7 +48,7 @@
     align-self: flex-end;
     border-top: none;
     border-right: none;
-    border-bottom-color: #fff
+    border-bottom-color: #ffffff
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
@@ -99,7 +99,7 @@
 
 .mapboxgl-popup-content {
     position: relative;
-    background: #fff;
+    background: #00000087;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgb(0 0 0/10%);
     padding: 10px 10px 15px;
