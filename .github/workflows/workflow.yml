@@ -37,8 +37,9 @@ jobs:
             '38511' \
             'root' \
             'password' \
-            'mydb' \
-             
+            'mydb' &
+            
+      - run: sleep 600
  
 
   
