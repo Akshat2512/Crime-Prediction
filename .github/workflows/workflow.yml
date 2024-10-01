@@ -33,8 +33,9 @@ jobs:
       - name: Set up MySQL Database
         run: |
           sudo service mysql start && \
-          mysql -u root -p -e "CREATE DATABASE mydb;" && \
-          mysql -u root -p mydb -e \
+          mysql -u root -e "CREATE DATABASE mydb;" && \
+          mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
+          mysql -u user -ppassword mydb -e \
              "CREATE TABLE users (  \
               id INT NOT NULL AUTO_INCREMENT,  \
               first_name VARCHAR(20), \
