@@ -33,8 +33,8 @@ jobs:
       - name: Set up MySQL Database
         run: |
           sudo service mysql start && \
-          mysql -u user -ppassword -e "CREATE DATABASE mydb;" && \
-          mysql -u user -ppassword mydb -e \
+          mysql -u root -p -e "CREATE DATABASE mydb;" && \
+          mysql -u root -p mydb -e \
              "CREATE TABLE users (  \
               id INT NOT NULL AUTO_INCREMENT,  \
               first_name VARCHAR(20), \
