@@ -273,13 +273,13 @@ async function pred_crimes(){
     body: crm
   })
   
-  var str = await response.text()
+  var str = await response.text();
   document.querySelector('#loading-page').style.display = 'none';
-  jsn = JSON.parse(str)
+  jsn = JSON.parse(str);
     
-  console.log(jsn)
+  console.log(jsn);
   
-  updateCharts(jsn, Charts[i], i, models[i])
+  updateCharts(jsn, Charts[i], i, models[i]);
   i++;
     }
 }
@@ -314,7 +314,18 @@ async function pred_current(){
 
       popup = new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML(`<div id="prediction-graph"><div></div><div><canvas id="Pred-Chart" style="width:250px; height: 145px"></canvas></div><div></div><button><</button><button>></button><button><i class="fa-solid fa-circle fa-fade" style="color: #ff0000;"></i> Live</button></div>`)
+            .setHTML(`<div id="prediction-graph">
+                                   <div></div>
+                                   <div><canvas id="Pred-Chart" style="width:250px; height: 145px"></canvas></div>
+                                   <div></div>
+                                   <button><</button>
+                                   <button>></button>
+                                   <button><i class="fa-solid fa-circle fa-fade" style="color: #ff0000;"></i> Live</button>
+                                   <div>
+                                     <div></div>
+                                     <div></div>
+                                   </div>
+                      </div>`)
             .addTo(map);
       
       var charts = document.getElementById(`Pred-Chart`).getContext('2d');
@@ -325,9 +336,7 @@ async function pred_current(){
       var set_time = document.querySelector('#prediction-graph div:nth-child(3)');
       var set_date = document.querySelector('#prediction-graph div:nth-child(1)');
 
-    
       var ch_hr = NaN;
-
       var hr = new Date().getHours();
 
       if(hr<10)
@@ -344,7 +353,7 @@ async function pred_current(){
           set_time.innerHTML = new Date().toLocaleTimeString();
     
            hr = new Date().getHours();
-         if(hr<10)
+          if(hr<10)
             hr = String('0'+hr);
       
           if(hr != ch_hr)
@@ -352,6 +361,7 @@ async function pred_current(){
             ch_hr = hr;
             curr_index++;
             updatecurrentchart(myChart, data, curr_index, r);
+            update_crime_stats(data, curr_index);
           }
        
       }
@@ -373,7 +383,8 @@ async function pred_current(){
         curr_index--;
         r++;
         updatecurrentchart(myChart, data, curr_index, r);
-        x[2].innerHTML = '<i class="fa-solid fa-circle"></i> Live'
+        update_crime_stats(data, curr_index);
+        x[2].innerHTML = '<i class="fa-solid fa-circle"></i> Live';
       }
 
       x[1].onclick = ()=>{
@@ -389,6 +400,7 @@ async function pred_current(){
         curr_index++;
         r--;
         updatecurrentchart(myChart, data, curr_index, r);
+        update_crime_stats(data, curr_index);
         x[2].innerHTML = '<i class="fa-solid fa-circle"></i> Live';
       }
 
@@ -399,18 +411,20 @@ async function pred_current(){
         r=0;
         curr_index = `${new Date().toLocaleDateString().split('/').reverse().join('-')} ${hr}:00:00`;
         curr_index = data.dates.indexOf(curr_index);
-        
+
         updatecurrentchart(myChart, data, curr_index, r);
+        update_crime_stats(data, curr_index);
+
         x[2].innerHTML = '<i class="fa-solid fa-circle fa-fade" style="color: #ff0000;"></i> Live';
       }
 }
 
 function updatecurrentchart(myChart, data, index, r){
 
-var max = data.dates[index+2];
-var min = data.dates[index-2];
+var max = data.dates[index+3];
+var min = data.dates[index-3];
 
-var max_ht = Math.max(...data.predictions.slice(index-2, index+3))+10;
+var max_ht = Math.max(...data.predictions.slice(index-3, index+4))+10;
 
 const u_data = {
   labels: data.dates, // The labels for the X axis
@@ -420,11 +434,10 @@ const u_data = {
     // fill: false, // Whether to fill the area under the line
     borderColor: "green", // The color of the line
     backgroundColor: data.predictions.map((value, i) => 
-      (i === index+r) ? 'rgba(255, 0, 0, 0.5)' : 'rgba(54, 162, 235, 0.2)'
+      (i === index+r) ? 'rgba(255, 94, 0, 0.5)' : 'rgba(54, 162, 235, 0.2)'
     ), // The color of the bars
    
   }]
-  
 }
 const options = {
   responsive: true, // Whether to resize the chart according to the container size
@@ -471,7 +484,62 @@ myChart.update();
 
 }
 
+function update_crime_stats(data, index){
 
+  function perc_change(t){
+
+    var curr_val = data.predictions[index];
+    var ft_val = data.predictions[index+t];
+    return Math.round(((ft_val - curr_val)/curr_val) * 100);
+
+  }
+
+  function crime_rates(f){
+  
+    var sum=0, k=0;
+    if(f=='d'){
+     data.dates.forEach((e,i) => {
+       if(new Date(data.dates[index]).toLocaleDateString() == new Date(e).toLocaleDateString())
+        { 
+          sum += data.predictions[i];
+          k++;
+        }
+     })
+    }
+     
+    return (sum/24).toFixed(1);
+    
+  }
+  document.querySelector("#prediction-graph > div:nth-child(7) > div:nth-child(1)").innerHTML = `<div>Daily crime rate per hour: ${crime_rates('d')}</div>`;
+  
+  function set_color(val){
+    var color;
+    var dir;
+    if (val < 0)
+     { color = '#17a303'; 
+       dir = 'down';
+     }
+    else if(val > 0)
+     { color='#fa0707'; 
+      dir = 'up';
+     }
+    
+    return `<span style="color:${color}"><i class="fa-solid fa-${dir}-long"></i> `+Math.abs(val)+'%</span>';
+  }
+ 
+  var arr = [perc_change(1), perc_change(2), perc_change(3)];
+  var max_3h = Math.max(... arr);
+  var i = arr.indexOf(max_3h);
+  var max_3h = set_color(max_3h);
+ 
+  var per_12h = set_color(perc_change(12));
+  var per_24h = set_color(perc_change(24));
+  var per_week = set_color(perc_change(24*7));
+  
+  document.querySelector("#prediction-graph > div:nth-child(7) > div:nth-child(2)").innerHTML = `<div>${i+1}h</div><div>${max_3h}</div><div>12h</div><div>${per_12h}</div><div>24h</div><div>${per_24h}</div><div>1w</div><div>${per_week}</div>`;
+  
+
+}
 
 
 
@@ -487,8 +555,8 @@ function inputstatsdata(crimes, counts, perc)
   })
   str = str + '</table>';
   e.innerHTML = str;
-
 }
+
 function displaystats(){
    var y = document.querySelector('#hide');
    y.style.display = 'block';

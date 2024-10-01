@@ -112,7 +112,6 @@ map.on('load', function() {
         curve: 1,
         easing: (t) => t * (2 - t)
       });
-swa
       
  
     });
@@ -213,7 +212,7 @@ const geolocate = new mapboxgl.GeolocateControl({
 //   }
   
   function prediction(e)
-  { document.querySelector('#loading-page').style.display = 'table-cell';
+  { //document.querySelector('#loading-page').style.display = 'table-cell';
     // fetch(`static/GeoJson/New_York.json`).then(response => response.json()).then(data => {
     //   document.querySelector('#loading-page').style.display = 'none';
     //   loadclusters(data)
@@ -392,11 +391,11 @@ function loadclusters(geodata)
           loc = e.block; 
        popup = new mapboxgl.Popup()
         .setLngLat(event.features[0].geometry.coordinates)
-        .setHTML(`<strong>Location:</strong> ${loc}<br>
+        .setHTML(`<div style='color: white;'><strong>Location:</strong> ${loc}<br>
         <strong>Offense:</strong> ${e.ofns_desc}<br>
         <strong>Premises Type:</strong> ${e.prem_type}<br>
         <strong>Date:</strong> ${e.date}<br>
-        <strong>Time:</strong> ${e.time}<br>  `)
+        <strong>Time:</strong> ${e.time}<br> </div> `)
         .addTo(map);
         });
     
@@ -558,11 +557,11 @@ function loadheatmap(geodata)
           loc = e.block; 
        popup = new mapboxgl.Popup()
         .setLngLat(event.features[0].geometry.coordinates)
-        .setHTML(`<strong>Location:</strong> ${loc}<br>
+        .setHTML(`<div style='color: white'><strong>Location:</strong> ${loc}<br>
         <strong>Offense:</strong> ${e.ofns_desc}<br>
         <strong>Premises Type:</strong> ${e.prem_type}<br>
         <strong>Date:</strong> ${e.date}<br>
-        <strong>Time:</strong> ${e.time}<br>  `)
+        <strong>Time:</strong> ${e.time}<br></div>  `)
         .addTo(map);
         });
 
