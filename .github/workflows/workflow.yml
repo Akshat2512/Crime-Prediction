@@ -9,6 +9,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     
+    services:
+         mysql:
+          image: mysql:5.7
+         env:
+           MYSQL_ROOT_PASSWORD: rootpassword
+           MYSQL_DATABASE: mydb
+           MYSQL_USER: user
+           MYSQL_PASSWORD: password
+         ports:
+           - 3306:3306
+         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2 
@@ -22,20 +34,43 @@ jobs:
       - run: |
             pip install -r requirements.txt
 
-     
-
+  
       - name: Set up ngrok
         run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
 
       - name: forward port to web
         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
+      
+      
 
+      - name: Wait for MySQL to be ready
+        
+        run: |
+          while ! mysqladmin ping --silent; do
+            sleep 1
+          done
+          
       - name: Starting application
         run: | 
-            sudo service mysql start && python app.py \
-            'rnwdi-152-59-118-41.a.free.pinggy.link' \
-            '42029' \
-            'root' \
+            sudo service mysql start && \
+            mysql -u user -p password mydb -e \
+             "CREATE TABLE users (  \
+              id INT NOT NULL AUTO_INCREMENT,  \
+              first_name VARCHAR(20), \
+              middle_name VARCHAR(20), \
+              last_name VARCHAR(20), \
+              age INT, \
+              phone BIGINT, \
+              email VARCHAR(30), \
+              country VARCHAR(5), \
+              username VARCHAR(30), \
+              passhash VARCHAR(180), \
+              salt VARCHAR(100), \
+              PRIMARY KEY (id) );" && \
+             python app.py \
+            'localhost' \
+            '3306' \
+            'user' \
             'password' \
             'mydb' &
             

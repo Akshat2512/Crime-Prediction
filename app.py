@@ -15,7 +15,7 @@ db_cred = sys.argv
 app = Flask(__name__)
 
 def connect_database():
-    connection = MySQLdb.connect(host=db_cred[1],  # connection using ssh tunnel
+    connection = MySQLdb.connect(host=db_cred[1],  # database connection using ssh tunnel
                              port=int(db_cred[2]),
                              user=db_cred[3],
                              password=db_cred[4],
