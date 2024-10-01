@@ -30,14 +30,6 @@ jobs:
         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
       
       
-
-      - name: Wait for MySQL to be ready
-        
-        run: |
-          while ! mysqladmin ping --silent; do
-            sleep 1
-          done
-      
       - name: Set up MySQL Database
         run: |
           sudo service mysql start && \
