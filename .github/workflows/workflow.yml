@@ -49,8 +49,6 @@ jobs:
               passhash VARCHAR(180), \
               salt VARCHAR(100), \
               PRIMARY KEY (id) );"
-      
-    
 
       - name: Starting application
         run: | 
