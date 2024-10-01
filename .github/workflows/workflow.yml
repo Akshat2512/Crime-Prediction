@@ -12,14 +12,9 @@ jobs:
     services:
          mysql:
           image: mysql:5.7
-         env:
-           MYSQL_ROOT_PASSWORD: rootpassword
-           MYSQL_DATABASE: mydb
-           MYSQL_USER: user
-           MYSQL_PASSWORD: password
-         ports:
+          ports:
            - 3306:3306
-         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s
+          options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout code
@@ -49,7 +44,12 @@ jobs:
           while ! mysqladmin ping --silent; do
             sleep 1
           done
-          
+      
+      - name: Set up MySQL Database
+        run: |
+          mysql -u user -p password -e "CREATE DATABASE mydb;"
+
+
       - name: Starting application
         run: | 
             sudo service mysql start && \
