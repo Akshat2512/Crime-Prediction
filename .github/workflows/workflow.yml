@@ -47,13 +47,9 @@ jobs:
       
       - name: Set up MySQL Database
         run: |
-          mysql -u user -p password -e "CREATE DATABASE mydb;"
-
-
-      - name: Starting application
-        run: | 
-            sudo service mysql start && \
-            mysql -u user -p password mydb -e \
+          sudo service mysql start && \
+          mysql -u user -p password -e "CREATE DATABASE mydb;" \
+          mysql -u user -p password mydb -e \
              "CREATE TABLE users (  \
               id INT NOT NULL AUTO_INCREMENT,  \
               first_name VARCHAR(20), \
@@ -67,7 +63,12 @@ jobs:
               passhash VARCHAR(180), \
               salt VARCHAR(100), \
               PRIMARY KEY (id) );" && \
-             python app.py \
+      
+    
+
+      - name: Starting application
+        run: | 
+            python app.py \
             'localhost' \
             '3306' \
             'user' \
