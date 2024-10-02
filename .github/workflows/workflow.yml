@@ -27,11 +27,12 @@ jobs:
         run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
 
       - name: forward port to web
-        run: while true; do
+        run: |
+           while true; do
                 pkill ngrok
                 ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
                 sleep 20
-             done
+           done
         shell: bash
 
       - name: Setup MySQL
