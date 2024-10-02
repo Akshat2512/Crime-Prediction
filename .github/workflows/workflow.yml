@@ -65,7 +65,7 @@ jobs:
               username VARCHAR(30), \
               passhash VARCHAR(180), \
               salt VARCHAR(100));" && \
-          mysql -u root mydb -e "desc users;"
+          mysql -u root mydb -e "desc users;" && \
           mysql -u root mydb -e "SELECT * from users;"
           
       - name: Starting application
@@ -75,24 +75,24 @@ jobs:
             '3306' \
             'root' \
             '' \
-            'mydb' 
+            'mydb' &
 
-      - name: Dump MySQL database
-        run: |
-          mysqldump -u root mydb > /tmp/mydb.sql
+      # - name: Dump MySQL database
+      #   run: |
+      #     mysqldump -u root mydb > /tmp/mydb.sql
 
-      - name: Cache MySQL data
-        if: always()
-        uses: actions/cache@v2
-        with:
-          path: /tmp/mydb.sql
-          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
-          restore-keys: |
-            ${{ runner.os }}-mysql-
-      # - run: sleep 50
+      # - name: Cache MySQL data
+      #   if: always()
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: /tmp/mydb.sql
+      #     key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-mysql-
+
+      - run: sleep 50
  
-
-  
+   
 
 
 
