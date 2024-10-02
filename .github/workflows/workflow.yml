@@ -32,12 +32,13 @@ jobs:
       
       - name: Set up MySQL Database
         run: |
-            sudo service mysql stop
-            sudo mkdir /var/run/mysqld
-            sudo chown mysql /var/run/mysqld
-            sudo mysqld_safe --skip-grant-tables&
-            sleep 5
-            sudo mysql -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';"
+            sudo service mysql start
+            sudo mysql -u root -p 
+            # sudo mkdir /var/run/mysqld
+            # sudo chown mysql /var/run/mysqld
+            # sudo mysqld_safe --skip-grant-tables --skip-networking &
+            # sleep 5
+            # sudo mysql -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';"
            # sudo mysqladmin -u root -ppassword shutdown
           
           # sudo service mysql start
