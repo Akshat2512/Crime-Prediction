@@ -33,8 +33,10 @@ jobs:
       - name: Set up MySQL Database
         run: |
            sudo service mysql stop
-           sudo mysqld_safe --skip-grant-tables --skip-networking
-           sudo mysql -u root -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'rootpassword'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+           sudo mkdir /var/run/mysqld
+           sudo chown mysql /var/run/mysqld
+           sudo mysqld_safe --skip-grant-tables
+           sudo mysql -u root -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'rootpassword'; FLUSH PRIVILEGES;"
            
          
     
