@@ -27,7 +27,11 @@ jobs:
         run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
 
       - name: forward port to web
-        run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
+        run: while true; do
+                pkill ngrok
+                ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
+                sleep 10
+             done
       
       - name: Setup MySQL
         uses: shogo82148/actions-setup-mysql@v1
@@ -57,7 +61,7 @@ jobs:
             '3306' \
             'root' \
             '' \
-            'mydb' &
+            'mydb'
             
       # - run: sleep 600
  
