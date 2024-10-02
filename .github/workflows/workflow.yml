@@ -37,8 +37,9 @@ jobs:
            sudo chown mysql /var/run/mysqld
            sudo mysqld_safe --skip-grant-tables&
            sleep 3
-           sudo mysql --user=root mysql
-           sudo mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'rootpassword';
+           sudo mysql -e "UPDATE mysql.user SET authentication_string=PASSWORD('rootpassword') WHERE User='root';"
+           sudo mysql -e "FLUSH PRIVILEGES;"
+          #  sudo mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'rootpassword';
     
           # mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
           # mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
