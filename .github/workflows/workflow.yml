@@ -1,10 +1,4 @@
 name: Flask Server
-env: 
-   MYSQL_DATABASE: mydb
-   MYSQL_USER: user
-   MYSQL_PASSWORD: password
-   MYSQL_HOST: mysql-master
-   NODE_ENV: test
 
 on:
   push:
