@@ -48,8 +48,8 @@ jobs:
               username VARCHAR(30), \
               passhash VARCHAR(180), \
               salt VARCHAR(100), \
-              PRIMARY KEY (id) );"
-        # mysql -u root mydb -e "select * from users;"
+              PRIMARY KEY (id) );" && \
+          mysql -u root mydb -e "select * from users;"
 
       - name: Starting application
         run: | 
