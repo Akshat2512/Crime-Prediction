@@ -33,7 +33,7 @@ jobs:
       - name: Set up MySQL Database
         run: |
             sudo service mysql start
-            sudo mysql -u root -p 
+            sudo mysql -u root -e "show Databases;"
           # sudo mkdir /var/run/mysqld
           # sudo chown mysql /var/run/mysqld
           # sudo mysqld_safe --skip-grant-tables --skip-networking &
