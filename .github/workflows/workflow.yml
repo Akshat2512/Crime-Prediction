@@ -48,7 +48,7 @@ jobs:
           key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
           restore-keys: |
             ${{ runner.os }}-mysql-
-            
+
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
           mysql -u root -p mydb -e \
