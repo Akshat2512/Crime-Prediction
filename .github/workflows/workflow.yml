@@ -49,7 +49,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mysql-
 
-      - run: mysql -u root -p mydb < /tmp/mydb.sql
+      - run: mysql -u root mydb < /tmp/mydb.sql
        
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
