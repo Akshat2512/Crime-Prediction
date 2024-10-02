@@ -22,10 +22,10 @@ def connect_database():
     #                          db=db_cred[5],
     #                          cursorclass=MySQLdb.cursors.DictCursor)
 
-    connection = MySQLdb.connect(host='localhost',
+    connection = MySQLdb.connect(host='127.0.0.1',
                                  port=3306,
                                  user='root',
-                
+                                 password='',
                                  db='mydb',
                                  cursorclass=MySQLdb.cursors.DictCursor)
 
