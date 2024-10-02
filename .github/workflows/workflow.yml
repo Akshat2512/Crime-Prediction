@@ -29,28 +29,29 @@ jobs:
       # - name: forward port to web
       #   run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
       
-      - name: setup mysql
+      - name: Setup MySQL
         uses: shogo82148/actions-setup-mysql@v1
         with:
             mysql-version: "8.0"
-      - run: mysql -uroot -e 'SELECT version()'
-        
-          #  sudo mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
-          #  sudo mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
-          # mysql -u user -ppassword mydb -e \
-          #    "CREATE TABLE users (  \
-          #     id INT NOT NULL AUTO_INCREMENT,  \
-          #     first_name VARCHAR(20), \
-          #     middle_name VARCHAR(20), \
-          #     last_name VARCHAR(20), \
-          #     age INT, \
-          #     phone BIGINT, \
-          #     email VARCHAR(30), \
-          #     country VARCHAR(5), \
-          #     username VARCHAR(30), \
-          #     passhash VARCHAR(180), \
-          #     salt VARCHAR(100), \
-          #     PRIMARY KEY (id) );"
+      - run: |
+         
+          mysql -u root -e 'SELECT version()'
+          mysql -u root -e "CREATE DATABASE mydb;"
+          mysql -u root mydb -e \
+             "CREATE TABLE users (  \
+              id INT NOT NULL AUTO_INCREMENT,  \
+              first_name VARCHAR(20), \
+              middle_name VARCHAR(20), \
+              last_name VARCHAR(20), \
+              age INT, \
+              phone BIGINT, \
+              email VARCHAR(30), \
+              country VARCHAR(5), \
+              username VARCHAR(30), \
+              passhash VARCHAR(180), \
+              salt VARCHAR(100), \
+              PRIMARY KEY (id) );"
+          mysql -u root mydb -e "select * from users;"
 
       - name: Starting application
         run: | 
@@ -61,7 +62,7 @@ jobs:
             'password' \
             'mydb' &
             
-      - run: sleep 600
+      # - run: sleep 600
  
 
   
