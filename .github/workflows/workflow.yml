@@ -66,7 +66,7 @@ jobs:
               passhash VARCHAR(180), \
               salt VARCHAR(100));" && \
           mysql -u root mydb -e "desc users;"
-          mysql -u root mydb -e "SELECT * from user;"
+          mysql -u root mydb -e "SELECT * from users;"
           
       - name: Starting application
         run: | 
