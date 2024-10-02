@@ -37,7 +37,7 @@ jobs:
             sudo chown mysql /var/run/mysqld
             sudo mysqld_safe --skip-grant-tables&
             sleep 5
-            sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rootpassword';"
+            sudo mysql -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';"
            # sudo mysqladmin -u root -ppassword shutdown
           
           # sudo service mysql start
