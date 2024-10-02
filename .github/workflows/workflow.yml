@@ -65,11 +65,12 @@ jobs:
               username VARCHAR(30), \
               passhash VARCHAR(180), \
               salt VARCHAR(100));" && \
-          mysql -u root mydb -e "desc users;" && \
-          sudo service mysql restart
+          mysql -u root mydb -e "desc users;"
+          
 
       - name: Starting application
         run: | 
+            sudo service mysql start && \
             python app.py \
             'localhost' \
             '3306' \
