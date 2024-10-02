@@ -48,11 +48,10 @@ jobs:
           key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
           restore-keys: |
             ${{ runner.os }}-mysql-
-
-      - run: mysql -u root mydb < /tmp/mydb.sql
        
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
+          mysql -u root mydb < /tmp/mydb.sql && \
           mysql -u root -p mydb -e \
             "CREATE TABLE users (  \
               id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  \
