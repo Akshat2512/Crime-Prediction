@@ -66,7 +66,7 @@ jobs:
               passhash VARCHAR(180), \
               salt VARCHAR(100));" && \
           mysql -u root mydb -e "desc users;" && \
-          sudo service mysql start
+          sudo service mysql restart
 
       - name: Starting application
         run: | 
