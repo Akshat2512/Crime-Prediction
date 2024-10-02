@@ -65,8 +65,7 @@ jobs:
               passhash VARCHAR(180), \
               salt VARCHAR(100));" && \
           mysql -u root mydb -e "desc users;" && \
-          sudo service mysql status
-          sudo mysql -u root -p -e "SHOW GRANTS FOR 'root'@'localhost';"
+          sudo service mysql start
 
       # - name: Starting application
       #   run: | 
