@@ -81,14 +81,14 @@ jobs:
       #   run: |
       #     mysqldump -u root mydb > /tmp/mydb.sql
 
-      # - name: Cache MySQL data
-      #   if: always()
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: /tmp/mydb.sql
-      #     key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-mysql-
+      - name: Cache MySQL data
+        if: always()
+        uses: actions/cache@v2
+        with:
+          path: /tmp/mydb.sql
+          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mysql-
 
       - run: sleep 50
  
