@@ -42,13 +42,13 @@ jobs:
            sudo mysql -e "FLUSH PRIVILEGES;"
            sudo mysqladmin shutdown
            sudo service mysql start
-           sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rootpassword'"
+           sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rootpassword';"
           #  sudo mysql -e "UPDATE mysql.user SET authentication_string=PASSWORD('rootpassword') WHERE User='root';"
           
           #  sudo mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'rootpassword';
     
-          mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
-          mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
+          sudo mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
+          sudo mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
           # mysql -u user -ppassword mydb -e \
           #    "CREATE TABLE users (  \
           #     id INT NOT NULL AUTO_INCREMENT,  \
