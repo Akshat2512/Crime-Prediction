@@ -54,7 +54,7 @@ jobs:
           mysql -u root mydb < /tmp/mydb.sql || \
           mysql -u root -p mydb -e \
             "CREATE TABLE users (  \
-              id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  \
+              id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, \
               first_name VARCHAR(20), \
               middle_name VARCHAR(20), \
               last_name VARCHAR(20), \
