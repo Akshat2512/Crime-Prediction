@@ -35,22 +35,22 @@ jobs:
           sudo service mysql stop && \
           sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'rootpassword'; FLUSH PRIVILEGES;" && \
           sudo service mysql start && \
-          mysql -u root -prootpassword -e "CREATE DATABASE mydb; && \"
-          mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
-          mysql -u user -ppassword mydb -e \
-             "CREATE TABLE users (  \
-              id INT NOT NULL AUTO_INCREMENT,  \
-              first_name VARCHAR(20), \
-              middle_name VARCHAR(20), \
-              last_name VARCHAR(20), \
-              age INT, \
-              phone BIGINT, \
-              email VARCHAR(30), \
-              country VARCHAR(5), \
-              username VARCHAR(30), \
-              passhash VARCHAR(180), \
-              salt VARCHAR(100), \
-              PRIMARY KEY (id) );"
+          mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
+          # mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
+          # mysql -u user -ppassword mydb -e \
+          #    "CREATE TABLE users (  \
+          #     id INT NOT NULL AUTO_INCREMENT,  \
+          #     first_name VARCHAR(20), \
+          #     middle_name VARCHAR(20), \
+          #     last_name VARCHAR(20), \
+          #     age INT, \
+          #     phone BIGINT, \
+          #     email VARCHAR(30), \
+          #     country VARCHAR(5), \
+          #     username VARCHAR(30), \
+          #     passhash VARCHAR(180), \
+          #     salt VARCHAR(100), \
+          #     PRIMARY KEY (id) );"
 
       - name: Starting application
         run: | 
