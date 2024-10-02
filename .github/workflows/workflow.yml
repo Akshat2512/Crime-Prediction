@@ -38,7 +38,7 @@ jobs:
             sudo mysqld_safe --skip-grant-tables&
             sleep 5
             sudo mysql -e "UPDATE mysql.user SET authentication_string=password WHERE User='root'; FLUSH PRIVILEGES;"
-            sudo mysqladmin -u root -ppassword shutdown
+           # sudo mysqladmin -u root -ppassword shutdown
           
           # sudo service mysql start
           #  sudo service mysql restart
