@@ -29,11 +29,11 @@ jobs:
       # - name: forward port to web
       #   run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
       
-        - name: setup mysql
-          uses: shogo82148/actions-setup-mysql@v1
-          with:
-              mysql-version: "8.0"
-        - run: mysql -uroot -e 'SELECT version()'
+      - name: setup mysql
+        uses: shogo82148/actions-setup-mysql@v1
+        with:
+            mysql-version: "8.0"
+      - run: mysql -uroot -e 'SELECT version()'
         
           #  sudo mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
           #  sudo mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
