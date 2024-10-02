@@ -37,7 +37,7 @@ df.set_index('date',inplace=True)
 
 df['holiday'] = np.where(df['holiday'].isnull(), 0, 1)
 
-df = df.resample('H').ffill()
+df = df.resample('h').ffill()
 
 
 def create_features(df_yr):

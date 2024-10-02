@@ -68,7 +68,7 @@ jobs:
             '3306' \
             'root' \
             '' \
-            'mydb' 
+            'mydb' &
 
       - name: Cache MySQL data
         if: always()
@@ -78,7 +78,7 @@ jobs:
           key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
           restore-keys: |
             ${{ runner.os }}-mysql-
-      # - run: sleep 600
+      - run: sleep 50
  
 
   
