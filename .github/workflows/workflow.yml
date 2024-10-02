@@ -38,7 +38,7 @@ jobs:
            sudo mysqld_safe --skip-grant-tables&
            sleep 3
            sudo mysql --user=root mysql
-          #  mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'rootpassword';
+           sudo mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'rootpassword';
     
           # mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
           # mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
@@ -66,7 +66,7 @@ jobs:
             'password' \
             'mydb' &
             
-      - run: sleep 600
+      # - run: sleep 600
  
 
   
