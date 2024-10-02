@@ -41,14 +41,7 @@ jobs:
         with:
             mysql-version: "8.0"
 
-      - name: Cache MySQL data
-        if: always()
-        uses: actions/cache@v2
-        with:
-          path: /var/lib/mysql
-          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
-          restore-keys: |
-            ${{ runner.os }}-mysql-
+    
 
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
@@ -76,7 +69,15 @@ jobs:
             'root' \
             '' \
             'mydb' 
-            
+
+      - name: Cache MySQL data
+        if: always()
+        uses: actions/cache@v2
+        with:
+          path: /var/lib/mysql
+          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mysql-
       # - run: sleep 600
  
 
