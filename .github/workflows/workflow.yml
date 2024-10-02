@@ -32,11 +32,7 @@ jobs:
       
       - name: Set up MySQL Database
         run: |
-            sudo service mysql stop
-            sudo mkdir /var/run/mysqld
-            sudo chown mysql /var/run/mysqld
-            sudo mysqld_safe --skip-grant-tables&
-            sleep 5
+            sudo service mysql start
             sudo mysql -e "show databases;"
            # sudo mysqladmin -u root -ppassword shutdown
           
