@@ -66,6 +66,7 @@ jobs:
               salt VARCHAR(100));" && \
           mysql -u root mydb -e "desc users;" && \
           sudo service mysql status
+          sudo mysql -u root -p -e "SHOW GRANTS FOR 'root'@'localhost';"
 
       # - name: Starting application
       #   run: | 
