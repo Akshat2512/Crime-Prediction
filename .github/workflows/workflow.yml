@@ -75,7 +75,7 @@ jobs:
             '3306' \
             'root' \
             '' \
-            'mydb' &
+            'mydb' 
 
       - name: Dump MySQL database
         run: |
