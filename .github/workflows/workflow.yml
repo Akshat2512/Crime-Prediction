@@ -37,7 +37,7 @@ jobs:
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
           mysql -u root -p mydb -e \
             "CREATE TABLE users (  \
-              id INT NOT NULL AUTO_INCREMENT,  \
+              id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  \
               first_name VARCHAR(20), \
               middle_name VARCHAR(20), \
               last_name VARCHAR(20), \
@@ -47,8 +47,7 @@ jobs:
               country VARCHAR(5), \
               username VARCHAR(30), \
               passhash VARCHAR(180), \
-              salt VARCHAR(100), \
-              PRIMARY KEY (id) );" && \
+              salt VARCHAR(100));" && \
           mysql -u root mydb -e "desc users;"
 
       - name: Starting application
