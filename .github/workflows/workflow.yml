@@ -13,13 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2 
 
-      - name: Install pip Dependencies
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
          python-version: '3.10'
          cache: 'pip'
 
-      - run: |
+      - name: Install pip Dependencies
+        run: |
             pip install -r requirements.txt
 
   
@@ -31,7 +32,7 @@ jobs:
            while true; do
                 pkill ngrok || true
                 ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
-                sleep 20
+                sleep 18000
            done &
         shell: bash
 
@@ -39,6 +40,15 @@ jobs:
         uses: shogo82148/actions-setup-mysql@v1
         with:
             mysql-version: "8.0"
+
+      - name: Cache MySQL data
+        uses: actions/cache@v2
+        with:
+          path: /var/lib/mysql
+          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mysql-
+            
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
           mysql -u root -p mydb -e \
