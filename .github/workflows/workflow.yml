@@ -35,7 +35,6 @@ jobs:
             mysql-version: "8.0"
       - run: |
           mysql -u root -e "CREATE DATABASE mydb;" && \
-          mysql -u root -e "Show databases;" && \
           mysql -u root mydb -e \
             "CREATE TABLE users (  \
               id INT NOT NULL AUTO_INCREMENT,  \
@@ -50,7 +49,7 @@ jobs:
               passhash VARCHAR(180), \
               salt VARCHAR(100), \
               PRIMARY KEY (id) );" && \
-          mysql -u root mydb -e "select * from users;"
+          mysql -u root mydb -e "desc users;"
 
       - name: Starting application
         run: | 
