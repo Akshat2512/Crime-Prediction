@@ -41,17 +41,8 @@ jobs:
         with:
             mysql-version: "8.0"
 
-      - name: Restore MySQL data
-        uses: actions/cache@v2
-        with:
-          path: /tmp/mydb.sql
-          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
-          restore-keys: |
-            ${{ runner.os }}-mysql-
-       
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
-          mysql -u root mydb < /tmp/mydb.sql || \
           mysql -u root -p mydb -e \
             "CREATE TABLE users (  \
               id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, \
@@ -71,26 +62,13 @@ jobs:
       - name: Starting application
         run: | 
             python app.py \
-            'localhost' \
+            '127.0.0.1' \
             '3306' \
             'root' \
             '' \
-            'mydb' &
+            'mydb'
 
-      # - name: Dump MySQL database
-      #   run: |
-      #     mysqldump -u root mydb > /tmp/mydb.sql
 
-      - name: Cache MySQL data
-        if: always()
-        uses: actions/cache@v2
-        with:
-          path: /tmp/mydb.sql
-          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
-          restore-keys: |
-            ${{ runner.os }}-mysql-
-
-      - run: sleep 50
  
    
 

@@ -15,19 +15,19 @@ db_cred = sys.argv
 app = Flask(__name__)
 
 def connect_database():
-    # connection = MySQLdb.connect(host=db_cred[1],  # database connection using ssh tunnel
-    #                          port=int(db_cred[2]),
-    #                          user=db_cred[3],
-    #                          password=db_cred[4],
-    #                          db=db_cred[5],
-    #                          cursorclass=MySQLdb.cursors.DictCursor)
+    connection = MySQLdb.connect(host=db_cred[1], 
+                             port=int(db_cred[2]),
+                             user=db_cred[3],
+                             password=db_cred[4],
+                             db=db_cred[5],
+                             cursorclass=MySQLdb.cursors.DictCursor)
 
-    connection = MySQLdb.connect(host='127.0.0.1',
-                                 port=3306,
-                                 user='root',
-                                 password='',
-                                 db='mydb',
-                                 cursorclass=MySQLdb.cursors.DictCursor)
+    # connection = MySQLdb.connect(host='127.0.0.1',
+    #                              port=3306,
+    #                              user='root',
+    #                              password='',
+    #                              db='mydb',
+    #                              cursorclass=MySQLdb.cursors.DictCursor)
 
     cursor = connection.cursor()
     return cursor, connection
