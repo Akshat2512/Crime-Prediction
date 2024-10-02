@@ -35,7 +35,7 @@ jobs:
           sudo service mysql stop && \
           sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'rootpassword'; FLUSH PRIVILEGES;" &&\
           # sudo service mysql start && \
-          # mysql -u root -prootpassword -e "CREATE DATABASE mydb; &&"
+          # mysql -u root -prootpassword -e "CREATE DATABASE mydb; && \"
           # mysql -u root -prootpassword -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON mydb.* TO 'user'@'localhost'; "
           # mysql -u user -ppassword mydb -e \
           #    "CREATE TABLE users (  \
