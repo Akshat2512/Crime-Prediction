@@ -34,7 +34,7 @@ jobs:
         with:
             mysql-version: "8.0"
       - run: |
-          mysql -u root -e "CREATE DATABASE mydb;" && \
+         
           mysql -u root mydb -e \
             "CREATE TABLE users (  \
               id INT NOT NULL AUTO_INCREMENT,  \
