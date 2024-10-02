@@ -32,8 +32,21 @@ jobs:
       
       - name: Set up MySQL Database
         run: |
-            sudo service mysql start
+            sudo service mysql stop;
+            sudo mkdir -p /var/run/mysqld
+            sudo chown mysql:mysql /var/run/mysqld
+            sudo mysqld_safe --skip-grant-tables --skip-networking &
+            sleep 5
             sudo mysql -u root -e "show Databases;"
+
+      - name: Reset MySQL root password
+        run: |
+            mysql -u root -e "UPDATE mysql.user SET authentication_string=PASSWORD('rootpassword') WHERE User='root'; FLUSH PRIVILEGES;"
+            echo "Root password reset."
+        
+      # - name: Shutdown MySQL safe mode
+      #   run: sudo mysqladmin shutdown
+
           # sudo mkdir /var/run/mysqld
           # sudo chown mysql /var/run/mysqld
           # sudo mysqld_safe --skip-grant-tables --skip-networking &
