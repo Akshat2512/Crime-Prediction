@@ -35,7 +35,8 @@ jobs:
            sudo service mysql stop
            sudo mkdir /var/run/mysqld
            sudo chown mysql /var/run/mysqld
-           sudo mysqld_safe --skip-grant-tables
+           sudo mysqld_safe --skip-grant-tables&
+           sleep 5
            sudo mysql -u root -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'rootpassword'; FLUSH PRIVILEGES;"
            
          
