@@ -35,9 +35,9 @@ jobs:
             mysql-version: "8.0"
       - run: |
          
-          mysql -u root -e 'SELECT version()'
-          mysql -u root -e "CREATE DATABASE mydb;"
-          mysql -u root mydb -e \
+          sudo mysql -u root -e 'SELECT version()' && \
+          sudo mysql -u root -e "CREATE DATABASE mydb;" && \
+          sudo mysql -u root mydb -e \
              "CREATE TABLE users (  \
               id INT NOT NULL AUTO_INCREMENT,  \
               first_name VARCHAR(20), \
