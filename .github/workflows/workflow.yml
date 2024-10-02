@@ -42,7 +42,6 @@ jobs:
             mysql-version: "8.0"
 
       - name: Restore MySQL data
-        if: always()
         uses: actions/cache@v2
         with:
           path: /tmp/mydb.sql
@@ -50,6 +49,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mysql-
 
+      - run: mysql -u root -p mydb < /tmp/mydb.sql
+       
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
           mysql -u root -p mydb -e \
