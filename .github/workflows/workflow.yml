@@ -68,7 +68,6 @@ jobs:
           mysql -u root mydb -e "desc users;"
           mysql -u root mydb -e "SELECT @@hostname; Select @@port"
           
-
       - name: Starting application
         run: | 
             python app.py \
