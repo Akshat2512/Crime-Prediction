@@ -37,6 +37,7 @@ jobs:
            sudo chown mysql /var/run/mysqld
            sudo mysqld_safe --skip-grant-tables&
            sleep 3
+           mysql -u root -p mysql_native_password && \
            sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'rootpassword';"
            sudo mysql -e "FLUSH PRIVILEGES;"
           #  sudo mysql -e "UPDATE mysql.user SET authentication_string=PASSWORD('rootpassword') WHERE User='root';"
