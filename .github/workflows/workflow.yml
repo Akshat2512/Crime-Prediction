@@ -38,21 +38,21 @@ jobs:
           sudo mysql -u root -e 'SELECT version()' && \
           sudo service mysql start && \
           sudo mysql -u root -e "CREATE DATABASE mydb;" && \
-          sudo mysql -u root mydb -e \
-             "CREATE TABLE users (  \
-              id INT NOT NULL AUTO_INCREMENT,  \
-              first_name VARCHAR(20), \
-              middle_name VARCHAR(20), \
-              last_name VARCHAR(20), \
-              age INT, \
-              phone BIGINT, \
-              email VARCHAR(30), \
-              country VARCHAR(5), \
-              username VARCHAR(30), \
-              passhash VARCHAR(180), \
-              salt VARCHAR(100), \
-              PRIMARY KEY (id) );"
-          mysql -u root mydb -e "select * from users;"
+        # sudo mysql -u root mydb -e \
+        #    "CREATE TABLE users (  \
+        #     id INT NOT NULL AUTO_INCREMENT,  \
+        #     first_name VARCHAR(20), \
+        #     middle_name VARCHAR(20), \
+        #     last_name VARCHAR(20), \
+        #     age INT, \
+        #     phone BIGINT, \
+        #     email VARCHAR(30), \
+        #     country VARCHAR(5), \
+        #     username VARCHAR(30), \
+        #     passhash VARCHAR(180), \
+        #     salt VARCHAR(100), \
+        #     PRIMARY KEY (id) );"
+        # mysql -u root mydb -e "select * from users;"
 
       - name: Starting application
         run: | 
