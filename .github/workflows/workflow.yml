@@ -41,7 +41,14 @@ jobs:
         with:
             mysql-version: "8.0"
 
-    
+      - name: Restore MySQL data
+        if: always()
+        uses: actions/cache@v2
+        with:
+          path: /tmp/mydb.sql
+          key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mysql-
 
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
@@ -70,11 +77,15 @@ jobs:
             '' \
             'mydb' &
 
+      - name: Dump MySQL database
+        run: |
+          mysqldump -u root mydb > /tmp/mydb.sql
+
       - name: Cache MySQL data
         if: always()
         uses: actions/cache@v2
         with:
-          path: /var/lib/mysql
+          path: /tmp/mydb.sql
           key: ${{ runner.os }}-mysql-${{ hashFiles('**/Dockerfile') }}
           restore-keys: |
             ${{ runner.os }}-mysql-
