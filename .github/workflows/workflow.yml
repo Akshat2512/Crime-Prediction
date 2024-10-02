@@ -1,4 +1,10 @@
 name: Flask Server
+env: 
+   MYSQL_DATABASE: mydb
+   MYSQL_USER: user
+   MYSQL_PASSWORD: password
+   MYSQL_HOST: mysql-master
+   NODE_ENV: test
 
 on:
   push:
@@ -8,7 +14,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+ 
     steps:
       # - name: Checkout code
       #   uses: actions/checkout@v2 
@@ -32,16 +38,17 @@ jobs:
       
       - name: Set up MySQL Database
         run: |
-           sudo service mysql stop
-           sudo mkdir /var/run/mysqld
-           sudo chown mysql /var/run/mysqld
-           sudo mysqld_safe --skip-grant-tables&
-           sleep 5
-           sudo mysql -e "UPDATE mysql.user SET authentication_string=null WHERE User='root';"
-           sudo mysql -e "FLUSH PRIVILEGES;"
-           sudo journalctl -xeu mysql.service
+            mysql -uroot -prootpassword -e "SHOW DATABASES;"
+          #  sudo service mysql stop
+          #  sudo mkdir /var/run/mysqld
+          #  sudo chown mysql /var/run/mysqld
+          #  sudo mysqld_safe --skip-grant-tables&
+          #  sleep 5
+          #  sudo mysql -e "UPDATE mysql.user SET authentication_string=null WHERE User='root';"
+          #  sudo mysql -e "FLUSH PRIVILEGES;"
+          #  sudo journalctl -xeu mysql.service
 
-           sudo service mysql restart
+          #  sudo service mysql restart
           
           #  sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rootpassword';
     
