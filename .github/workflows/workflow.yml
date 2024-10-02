@@ -51,7 +51,7 @@ jobs:
        
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
-          mysql -u root mydb < /tmp/mydb.sql && \
+          mysql -u root mydb < /tmp/mydb.sql || \
           mysql -u root -p mydb -e \
             "CREATE TABLE users (  \
               id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  \
