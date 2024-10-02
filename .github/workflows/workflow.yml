@@ -33,9 +33,8 @@ jobs:
       - name: Set up MySQL Database
         run: |
            sudo service mysql start
-           sudo mysqld_safe --skip-grant-tables &
-           sleep 5
-           sudo mysql -e "UPDATE mysql.user SET Password=PASSWORD('rootpassord') WHERE User='root'"
+           sudo mysql -u root -e "FLUSH PRIVILEGES; ALTER USER 'root'@'localhost' IDENTIFIED BY 'rootpassword'; FLUSH PRIVILEGES;"
+           
          
     
           # mysql -u root -prootpassword -e "CREATE DATABASE mydb;"
