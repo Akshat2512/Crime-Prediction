@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -69,6 +70,7 @@ jobs:
 
       - name: forward port to web
         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
+
       - run: sleep 60
 
          
