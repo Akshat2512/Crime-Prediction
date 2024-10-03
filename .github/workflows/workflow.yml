@@ -42,7 +42,7 @@ jobs:
         run: |
           ls -l /tmp/mydb.sql
           cat /tmp/mydb.sql # Check contents
-          
+
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
           mysql -u root mydb < /tmp/mydb.sql || mysql -u root -p mydb -e \
@@ -78,7 +78,9 @@ jobs:
 
       - run: sleep 60
 
-         
+      - run: |
+          mysqldump -u root mydb < /tmp/mydb.sql
+          
       - name: Trigger next workflow
         run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
  
