@@ -32,7 +32,7 @@ jobs:
       
       - run: |
           mysqldump -u root mydb > /tmp/mydb.sql
-          
+
       - name: Cache MySQL
         uses: actions/cache@v2
         with:
@@ -79,7 +79,7 @@ jobs:
       - run: |
           mysqldump -u root mydb > /tmp/mydb.sql
 
-restart:
+  restart:
     runs-on: ubuntu-latest
     need: deploy
     steps:
