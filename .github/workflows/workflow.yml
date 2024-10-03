@@ -82,7 +82,7 @@ jobs:
 
   restart:
     runs-on: ubuntu-latest
-    need: deploy
+    needs: deploy
     steps:
  
       - name: Trigger next workflow
