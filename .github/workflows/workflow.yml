@@ -74,7 +74,7 @@ jobs:
       - run: sleep 60
 
       - run: |
-          mysqldump -u root mydb < /tmp/mydb.sql
+          mysqldump -u root mydb > /tmp/mydb.sql
 
       - name: Trigger next workflow
         run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
