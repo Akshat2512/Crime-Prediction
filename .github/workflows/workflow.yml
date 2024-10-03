@@ -35,9 +35,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/mydb.sql
-          key: ${{ runner.os }}-mysql
+          key: ${{ runner.os }}-mysql-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-mysql
+            ${{ runner.os }}-mysql-
 
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
@@ -84,7 +84,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2 
-
+        
       - name: Trigger next workflow
         run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
  
