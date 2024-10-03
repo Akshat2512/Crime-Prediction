@@ -1,6 +1,10 @@
 ## Overview
 The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas effectively. By harnessing various machine learning algorithms, it enables timely intervention and proper resource allocation. This app analyzes historical crime trends of cities like New York, Chicago and predicts future crime rates.
 
+## Project Deploy Url
+- First create your account then login your account
+- then login your account then 
+[Visit](key-grizzly-directly.ngrok-free.app)
 ## Features
 
 - <b>Login page:</b> User can create, login account, user data will be saved in the database.
@@ -66,4 +70,4 @@ Once the backend processes the data, it returns the prediction results to the fr
 The frontend displays this information to the user.
 
 - Ngrok:
-The ngrok tunnel used to expose local development environment to the web having url - https://key-grizzly-directly.ngrok-free.app
+The ngrok tunnel used to expose local development environment to the web having url - https://key-grizzly-directly.ngrok-free.app 

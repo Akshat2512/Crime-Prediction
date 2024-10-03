@@ -531,7 +531,7 @@ function update_crime_stats(data, index){
   var max_3h = Math.max(... arr);
   var i = arr.indexOf(max_3h);
   var max_3h = set_color(max_3h);
- 
+  var max_6h = set_color()
   var per_12h = set_color(perc_change(12));
   var per_24h = set_color(perc_change(24));
   var per_week = set_color(perc_change(24*7));
