@@ -38,7 +38,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mysql-
 
-
+      - name: Validate MySQL file
+        run: |
+          ls -l /tmp/mydb.sql
+          cat /tmp/mydb.sql # Check contents
+          
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
           mysql -u root mydb < /tmp/mydb.sql || mysql -u root -p mydb -e \
