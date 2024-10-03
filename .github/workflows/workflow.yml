@@ -34,10 +34,18 @@ jobs:
         uses: shogo82148/actions-setup-mysql@v1
         with:
             mysql-version: "8.0"
+      
+      - name: Cache MySQL
+        uses: actions/cache@v2
+        with:
+          path: /tmp/mydb.sql
+          key: ${{ runner.os }}-mysql-${{ hashFiles('/tmp/mydb.sql') }}
+          restore-keys: |
+            ${{ runner.os }}-mysql-
 
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
-          mysql -u root -p mydb -e \
+          mysql -u root mydb < /tmp/mydb.sql && mysql -u root -p mydb -e \
             "CREATE TABLE users (  \
               id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, \
               first_name VARCHAR(20), \
@@ -62,9 +70,9 @@ jobs:
             '' \
             'mydb' &
 
-      - run: sleep 18000
+      - run: sleep 60
 
-
+         
       - name: Trigger next workflow
         run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
  
