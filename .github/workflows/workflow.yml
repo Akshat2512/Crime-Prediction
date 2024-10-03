@@ -75,8 +75,9 @@ jobs:
       #       'Ngrok-Version' = '2' 
       #        }
       #       \$response = Invoke-WebRequest -Uri 'https://api.ngrok.com/tunnels' -Headers \$headers
-      #       \$response.Content
-      #       Invoke-WebRequest -Uri "https://api.ngrok.com/tunnels/$($tunnel.name)" -Method DELETE -Headers $headers"
+      #       \$tunnel = $response.Content | ConvertFrom-Json | Select-Object -ExpandProperty tunnels
+      #        Invoke-WebRequest -Uri 'https://api.ngrok.com/tunnels/' + \$tunnel.id -Method DELETE -Headers \$headers"
+      
       - name: forward port to web
         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000
 
