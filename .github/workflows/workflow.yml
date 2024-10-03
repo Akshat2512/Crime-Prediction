@@ -37,6 +37,7 @@ jobs:
           key: ${{ runner.os }}-mysql-${{ hashFiles('/tmp/mydb.sql') }}
           restore-keys: |
             ${{ runner.os }}-mysql-
+            
 
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
