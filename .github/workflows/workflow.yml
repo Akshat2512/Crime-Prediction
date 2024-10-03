@@ -37,13 +37,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-mysql-
 
-            
-      - name: Set up ngrok
-        run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
-
-      - name: forward port to web
-        run: ngrok http --domain=teaching-civet-smoothly.ngrok-free.app 8000 &
-
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
           mysql -u root mydb < /tmp/mydb.sql || mysql -u root -p mydb -e \
@@ -71,7 +64,11 @@ jobs:
             '' \
             'mydb' &
 
+      - name: Set up ngrok
+        run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
 
+      - name: forward port to web
+        run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
       - run: sleep 60
 
          
