@@ -69,8 +69,10 @@ jobs:
   
       - name: cancel previous ngrok tunnel if running in other server
         run:  pwsh -Command "
-              \$headers = @{ 'Authorization' = 'Bearer ${{ secrets.NGROK_API_KEY}}'
-                             'Ngrok-Version' = '2' }
+              \$headers = @{ 
+              'Authorization' = 'Bearer ${{ secrets.NGROK_API_KEY}}'
+              'Ngrok-Version' = '2' 
+              \}
               \$response = Invoke-WebRequest -Uri 'https://api.ngrok.com/tunnels' -Headers \$headers
               \$response.Content
             "
