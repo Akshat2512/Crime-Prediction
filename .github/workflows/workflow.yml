@@ -76,6 +76,11 @@ jobs:
       - run: |
           mysqldump -u root mydb > /tmp/mydb.sql
 
+restart:
+    runs-on: ubuntu-latest
+    need: deploy
+    steps:
+ 
       - name: Trigger next workflow
         run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
  
