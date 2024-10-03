@@ -80,6 +80,7 @@ jobs:
       - name: Trigger next workflow
         run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
 
+        
   # restart:
   #   runs-on: ubuntu-latest
   #   needs: deploy
