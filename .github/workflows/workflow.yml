@@ -68,10 +68,13 @@ jobs:
       #   run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
   
       - name: cancel previous ngrok tunnel if running in other server
-        run:  pwsh -Command "
-               $headers = @{ 'Authorization' = 'Bearer ${{ secrets.NGROK_API_KEY }}' 'Ngrok-Version' = '2' }
-               $response = Invoke-WebRequest -Uri 'https://api.ngrok.com/tunnels' -Headers $headers
-               $response.Content "
+        run:  pwsh -Command "\
+               \$headers = @{ 
+              \'Authorization' = 'Bearer ${{ secrets.NGROK_API_KEY }}' 
+               \'Ngrok-Version' = '2' 
+               \}
+               \$response = Invoke-WebRequest -Uri 'https://api.ngrok.com/tunnels' -Headers $headers
+               \$response.Content "
       # - name: forward port to web
       #   run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000
 
