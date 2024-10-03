@@ -30,6 +30,9 @@ jobs:
         with:
             mysql-version: "8.0"
       
+      - run: |
+          mysqldump -u root mydb > /tmp/mydb.sql
+          
       - name: Cache MySQL
         uses: actions/cache@v2
         with:
