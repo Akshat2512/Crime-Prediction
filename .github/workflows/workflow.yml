@@ -24,12 +24,6 @@ jobs:
             pip install -r requirements.txt
 
   
-      - name: Set up ngrok
-        run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
-
-      - name: forward port to web
-        run: ngrok http --domain=teaching-civet-smoothly.ngrok-free.app 8000 &
-
       - name: Setup MySQL
         uses: shogo82148/actions-setup-mysql@v1
         with:
@@ -42,6 +36,13 @@ jobs:
           key: ${{ runner.os }}-mysql-${{ hashFiles('/tmp/mydb.sql') }}
           restore-keys: |
             ${{ runner.os }}-mysql-
+
+            
+      - name: Set up ngrok
+        run: sudo snap install ngrok --devmode && ngrok config add-authtoken ${{ secrets.NGROK_TOKEN }}
+
+      - name: forward port to web
+        run: ngrok http --domain=teaching-civet-smoothly.ngrok-free.app 8000 &
 
       - run: |
           mysql -u root -p -e "CREATE DATABASE mydb;" && \
@@ -69,7 +70,7 @@ jobs:
             'root' \
             '' \
             'mydb' &
-            
+
 
       - run: sleep 60
 
