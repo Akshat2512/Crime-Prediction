@@ -72,7 +72,7 @@ jobs:
       - name: forward port to web
         run: ngrok http --domain=key-grizzly-directly.ngrok-free.app 5000 &
 
-      - run: sleep 18000
+      - run: sleep 60
 
       - run: |
           mysqldump -u root mydb > /tmp/mydb.sql
