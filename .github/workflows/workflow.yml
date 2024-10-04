@@ -87,22 +87,28 @@ jobs:
       - run: |
           mysqldump -u root mydb > /tmp/mydb.sql
     
+      # - name: Trigger next workflow
+      #   run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
+
+  restart:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2 
       - name: Trigger next workflow
         run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
-
-
-
-        # curl -H "Authorization: Bearer 2mw9PQgnaaCKoPI9a4h0INA65s9_6LKbXo1cT6kNTvaYK4Jj2" -H "Ngrok-Version: 2" https://api.ngrok.com/tunnel_sessions
-  # restart:
-  #   runs-on: ubuntu-latest
-  #   needs: deploy
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2 
-  #     - name: Trigger next workflow
-  #       run: gh auth login --with-token <<<"${{ secrets.WORKFLOW_TOKEN }}" && gh workflow run workflow.yml
  
-   
+
+#  $headers = @{    
+#              'Authorization' = 'Bearer 2mw9PQgnaaCKoPI9a4h0INA65s9_6LKbXo1cT6kNTvaYK4Jj2'
+#              'Ngrok-Version' = '2'
+#             }
+# $response = Invoke-WebRequest -Uri 'https://api.ngrok.com/tunnels/' -Headers $headers 
+# $tunnel = $response.Content | ConvertFrom-Json | Select-Object -ExpandProperty tunnel_sessions
+# $response = Invoke-WebRequest -Uri 'https://api.ngrok.com/tunnel_sessions' -Headers $headers  
+# Invoke-WebRequest -Uri $($tunnel.endpoint.uri) -Method DELETE -Headers $headers
+        # curl -H "Authorization: Bearer 2mw9PQgnaaCKoPI9a4h0INA65s9_6LKbXo1cT6kNTvaYK4Jj2" -H "Ngrok-Version: 2" https://api.ngrok.com/tunnel_sessions
 
 
 
