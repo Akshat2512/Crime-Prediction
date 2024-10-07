@@ -2,11 +2,12 @@ Models/Chicago_Decision_Tree.joblib
 Models/Chicago_Light_GBM.joblib
 Models/Chicago_Random_Forest.joblib
 Models/Chicago_Linear.joblib
+Models/Chicago_XGBoost.joblib
 Models/New_York_Decision_Tree.joblib
 Models/New_York_Light_GBM.joblib
 Models/New_York_Random_Forest.joblib
 Models/New_York_Chicago_Linear.joblib
-Models/New_York_XGBoost.joblib
+
 templates
 Module/updatemodels.py
 Data
