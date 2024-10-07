@@ -2,35 +2,26 @@
     "version": 2,
     "builds": [
       {
-        "src": "app.py",
-        "use": "@vercel/python"
+        "src": "public/index.html",
+        "use": "@vercel/static"
       },
       {
-        "src": "CrimePrediction.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "currentcrime.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "currentcrime.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "filterdata.py",
+        "src": "api/app.py",
         "use": "@vercel/python"
       }
-      
     ],
-    "routes": [
+    "rewrites": [
       {
-        "src": "/api/(.*)",
-        "dest": "/api/crime_prediction.py"
+        "source": "/(.*)",
+        "destination": "/api/app.py"
       },
       {
-        "src": "/(.*)",
-        "dest": "/app.py"
+        "source": "/(.*)",
+        "destination": "/public/index.html"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/Module/**/*.py"
       }
     ]
   }

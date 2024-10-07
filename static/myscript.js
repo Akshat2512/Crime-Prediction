@@ -80,7 +80,7 @@ img.forEach(e => {
 
 
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiYWtzaGF0MjUxMiIsImEiOiJjbTE0NDI4N2YxY3I5MmpzZnNieWFwNXc0In0.JHhey50KWCJT-MgwUeeWVA';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWtzaGF0MjUxMiIsImEiOiJjbG01OXVoaXEzeGwyM3FsaW96NGt6aWZxIn0.SHICUGF0uP3IDVnpkCfBTw';
 var style = 'mapbox://styles/akshat2512/';
 
 
