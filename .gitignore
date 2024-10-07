@@ -9,6 +9,7 @@ Models/New_York_Chicago_Linear.joblib
 Models/New_York_XGBoost.joblib
 templates
 Module/updatemodels.py
+static/Data
 static/Data/Chicago_crime_2001_2023.csv
 static/GeoJson
 Extra
