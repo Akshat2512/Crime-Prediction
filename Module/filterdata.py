@@ -12,7 +12,7 @@ req_data = json.loads(sys.argv[1])
 # req_data = {'city': 'Chicago', 'from': '2023-12-20', 'to':'2023-12-31', 'Ext_type': 'heat-map' }
 # Read data
 
-data = pd.read_csv(f'static/Data/{req_data["city"]}_crime_2001_2023.csv')
+data = pd.read_csv(f'Data/{req_data["city"]}_crime_2001_2023.csv')
 
 data.date = pd.to_datetime(data['date'], format='%Y-%m-%dT%H:%M:%S') 
 
