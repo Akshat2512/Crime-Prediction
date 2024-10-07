@@ -2,7 +2,7 @@
 The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas effectively. By harnessing various machine learning algorithms, it enables timely intervention and proper resource allocation. This app analyzes historical crime trends of cities like New York, Chicago and predicts future crime rates.
 
 ## Project Deploy Url
-- Just create your account then login your page
+Login page disabled, this will directly load the main page
 [Take a Visit](key-grizzly-directly.ngrok-free.app)
 
 ## Features

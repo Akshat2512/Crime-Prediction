@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Crime Prediction</title>
+ 
+
+  <link href='static\map_popup.css' rel="stylesheet">
+  <link rel="icon" type="image/png" href="\static\Data\icons\favicon.ico">
+
+  <script src="https://kit.fontawesome.com/33036627a7.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+  <link href='static\mystyle.css' rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id='map'>
+   
+   <div id="layers">
+    <div><img src='static/Data/Layers/Streets.png' data-value="clt7fvmpe010r01qu1i315quc"><span>Streets</span></div>
+    <div><img src='static/Data/Layers/Satellite Streets.png' data-value="clmk97vgm01st01qxh1kb65e3"><span>Satellite</span></div>
+    <div><img src='static/Data/Layers/Light.png' data-value="clmk8i6g301ru01pbenk38p9r"><span>Light</span></div>
+    <div><img src='static/Data/Layers/Dark.png' data-value="clmk935hf01tx01pf6grq4oev"><span>Dark</span></div>
+    <div><button class = "close"><i class="fa-solid fa-circle-xmark" style="color: #d06767;"></i></button></div>
+  </div>
+   <div id="pred">
+        <label>City: </label> 
+        <select>
+          <option value="None">-None-</option>
+          <option value="New_York">New York</option>
+          <option value="Chicago">Chicago</option>
+        </select>
+   </div>
+   <button class="close"><i class="fa-solid fa-circle-xmark" style="color: #d06767;"></i></button>
+   <div id="head"></div>
+   
+  
+  <div id="time-slide"><div></div></div>
+  
+  <div id="slide">
+    <div id = 'year'>
+    </div>
+  </div>
+ 
+</div>
+
+
+<div id="navbar"><br><br><br><br><br>
+  <div><i class="fa-solid fa-layer-group"></i> &nbsp; <span> Layers </span></div>
+  <div onclick="showdate('heat')"><i class="fa-solid fa-map"></i> &nbsp; <span> Crime Analysis </span></div>
+  <div onclick="check('points')"><i class="fa-solid fa-location-crosshairs"></i> &nbsp; <span> Crime Forecast </span></div>
+</div>
+
+<div id ="sidebar">
+<div id="stats">
+  <div id="bar"><canvas id="myBarChart"></canvas></div>
+  <div id="pie"><canvas id="myPieChart"></canvas></div>
+  <div id="statsdata1"></div>
+</div>
+
+<div id="graphs">
+ 
+
+</div>
+</div>
+
+<div id="hide"><i class="fa-solid fa-angles-right fa-shake" style="color: #a4a5a8;"></i></div>
+
+<div id="account-container"><div id = 'user-icon'><i class="fa-solid fa-circle-user" style="color: #c4c6ca;"></i></div>
+<div id="account"><div id="hide_2"><i class="fa-solid fa-angles-right fa-shake" style="color: #a4a5a8;"></i></div>
+<div id="acc_info"><div class="grid-container"><div class="grid-items"><label>Name:</label></div><div class="grid-items"><input id="fname" type='name' placeholder='First name' value='{{f_name}} {{m_name}} {{l_name}}' disabled required/> <input id="mname" type='name' placeholder='Middle name' disabled /> <input id="lname" type='name' placeholder='Last name' disabled/></div>
+<div class="grid-items"><label>Age:</label></div><div class="grid-items"><input id='age' type='number' value='{{age}}' disabled required/></div>
+<div class="grid-items"><label>Username:</label></div><div class="grid-items"><input id="uname" type='text' value='{{u_name}}' disabled required/></div>
+<div class="grid-items"><label>Email:</label></div><div class="grid-items"><input id='mail_in' type="text" value='{{email}}' disabled required/></div>
+<div class="grid-items"><label>Country:</label></div><div class="grid-items"><select id="ctr" disabled> </select></div>
+<div class="grid-items"><label>Phone no.:</label></div><div class="grid-items"><span id='ctr_c'>{{ctr_code}}</span><input id='ph_no' type='text' value='{{ph_no}}' placeholder='Phone number' disabled /></div>
+<div class="grid-items"><button type='button' disabled>Save</button></div><div class="grid-items"><button type='button'>Cancel</button></div><form action="/logout" method="POST"><div class="grid-items"><button type='submit'>Logout</button></div></form></div>
+<div><i id='edit_acc' class="fa-solid fa-square-pen" style="color: #8a8c8f;"></i></div></div>
+</div>
+</div>
+
+
+<div id="loading-page">
+  <img src="static/Data/icons/Loading.png" height="70" width="70" style="padding: 40px">
+</div>
+
+<div id="popup-warning"></div>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script> 
+<script type="text/javascript" src="static\accountinfo.js"></script>
+<script type="text/javascript" src="static\yearrange.js"></script>
+<script type="text/javascript" src="static\myscript.js"></script>
+<script type="text/javascript" src="static\stats.js"></script>
+
+</body>
+</html>
