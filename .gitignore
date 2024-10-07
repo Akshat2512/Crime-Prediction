@@ -8,7 +8,7 @@ Models/New_York_Light_GBM.joblib
 Models/New_York_Random_Forest.joblib
 Models/New_York_Chicago_Linear.joblib
 
-templates
+# templates
 Module/updatemodels.py
 Data
 Data/Chicago_crime_2001_2023.csv
