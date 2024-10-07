@@ -18,10 +18,6 @@
       {
         "source": "/(.*)",
         "destination": "public/index.html"
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/Module/**/*.py"
       }
     ]
   }
