@@ -15,6 +15,7 @@ Data/Chicago_crime_2001_2023.csv
 public/static/GeoJson
 Extra
 
+
 node_modules
 package-lock.json
 README.md
