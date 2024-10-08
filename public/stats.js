@@ -267,7 +267,7 @@ async function pred_crimes(){
  
  while(i < models.length){
  const crm = JSON.stringify({"city": z.value, "model": models[i] });
-  var response = await fetch('/run_1',{
+  var response = await fetch('/api/run_1',{
     method: "POST",
     headers:{"Content-Type" :"application/json"},
     body: crm
@@ -299,7 +299,7 @@ async function pred_current(){
   
       var data = JSON.stringify(jsn);
 
-      var response = await fetch(`/live`, {
+      var response = await fetch(`/api/live`, {
         method: "POST",
         headers:{"Content-Type" :"application/json"},
         body: data
