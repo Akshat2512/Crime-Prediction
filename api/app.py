@@ -12,9 +12,9 @@ app = Flask(__name__)
 def run_1():
     data = request.json
     data = json.dumps(data)
-    print(output)
-    output = subprocess.check_output(['python', 'Module/CrimePrediction.py', data])
     
+    output = subprocess.check_output(['python', 'Module/CrimePrediction.py', data])
+    print(output)
     return output
 
 @app.route('/run_2', methods=['POST'])
