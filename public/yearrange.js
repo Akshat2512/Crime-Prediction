@@ -351,7 +351,7 @@ async function getdata(crm)
 {
   
   var jsn;
-    await fetch('/api/run_2',{
+    await fetch('/run_2',{
       method: "POST",
       headers:{"Content-Type" :"application/json"},
       body: crm

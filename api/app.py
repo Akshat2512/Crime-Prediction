@@ -8,7 +8,7 @@ from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
 
-@app.route('/api/run_1', methods=['POST'])
+@app.route('/run_1', methods=['POST'])
 def run_1():
     data = request.json
     data = json.dumps(data)
@@ -17,7 +17,7 @@ def run_1():
     
     return output
 
-@app.route('/api/run_2', methods=['POST'])
+@app.route('/run_2', methods=['POST'])
 def run_2():
     data = request.json
     data = json.dumps(data)
@@ -25,7 +25,7 @@ def run_2():
 
     return output
 
-@app.route('/api/live', methods=['POST'])
+@app.route('/live', methods=['POST'])
 def get_current_crime():
     data = request.json
     data = json.dumps(data)

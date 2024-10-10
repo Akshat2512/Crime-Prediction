@@ -104,7 +104,7 @@ function pred_graphs()
       <canvas id="myChart${i}" style="width: 530px;height: 300px;"></canvas>
       <div></div>
       <div></div>
-      <div class = "loading-page"> <img src="static/Data/icons/Loading.png" height="70" width="70" style="padding: 40px"> </div>
+      <div class = "loading-page"> <img src="Data/icons/Loading.png" height="70" width="70" style="padding: 40px"> </div>
        </div>`
        i = i+1; 
     }
@@ -267,7 +267,7 @@ async function pred_crimes(){
  
  while(i < models.length){
  const crm = JSON.stringify({"city": z.value, "model": models[i] });
-  var response = await fetch('/api/run_1',{
+  var response = await fetch('/run_1',{
     method: "POST",
     headers:{"Content-Type" :"application/json"},
     body: crm
@@ -299,7 +299,7 @@ async function pred_current(){
   
       var data = JSON.stringify(jsn);
 
-      var response = await fetch(`/api/live`, {
+      var response = await fetch(`/live`, {
         method: "POST",
         headers:{"Content-Type" :"application/json"},
         body: data
