@@ -1,6 +1,7 @@
 import subprocess,json
 from flask import Flask, render_template, request, redirect
-
+from Module.currentcrime import current_crime_prediction
+from Module.filterdata import filter_data_for_Analysis
 # # from flask_mysqldb import MySQL
 # import MySQLdb.cursors
 
@@ -21,15 +22,15 @@ def run_1():
 def run_2():
     data = request.json
     data = json.dumps(data)
-    output = subprocess.check_output(['python', 'Module/filterdata.py', data])
+    output = filter_data_for_Analysis(['python', 'Module/filterdata.py', data])
 
     return output
 
 @app.route('/live', methods=['POST'])
 def get_current_crime():
     data = request.json
-    data = json.dumps(data)
-    output = subprocess.check_output(['python', 'Module/currentcrime.py', data])
+
+    output = curr_crime_prediction(data)
 
     return output
 
