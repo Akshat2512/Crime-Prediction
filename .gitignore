@@ -20,3 +20,4 @@ node_modules
 package-lock.json
 README.md
 .vercel
+myenv
