@@ -1,8 +1,0 @@
-{
-    "engines": {
-        "node": "18.x"
-    },
-    "dependencies": {
-        "vercel": "^37.6.2"
-    }
-}
