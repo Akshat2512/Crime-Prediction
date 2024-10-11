@@ -23,10 +23,10 @@ def curr_crime_prediction(req_data):
     df = df.reset_index()
 
     if req_data['city'] == 'New_York':
-    us_holidays = holidays.US(state='NY')
+      us_holidays = holidays.US(state='NY')
 
     if req_data['city'] == 'Chicago':
-    us_holidays = holidays.US(state='IL')
+      us_holidays = holidays.US(state='IL')
 
     df['holiday'] = df['date'].apply(lambda x: us_holidays.get(x))
 
