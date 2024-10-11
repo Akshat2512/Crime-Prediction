@@ -48,7 +48,8 @@ def filter_data_for_Analysis(req_data):
 
         cn = '{'
         for _, row in count.iterrows():
-        cn = cn + '"'+row['Crime Type']+'" : '+  str(row['Count']) +','
+         cn = cn + '"'+row['Crime Type']+'" : '+  str(row['Count']) +','
+        
         cn = cn[:-1] + '}'
 
         jsn2='{"type": "FeatureCollection", "features": ['
