@@ -29,11 +29,9 @@ def curr_crime_prediction(req_data):
       us_holidays = holidays.US(state='IL')
 
     df['holiday'] = df['date'].apply(lambda x: us_holidays.get(x))
+    df['holiday'] = df['holiday'].apply(lambda x: 0 if pd.isnull(x) else 1)
 
     df.set_index('date',inplace=True)
-
-
-    df['holiday'] = np.where(df['holiday'].isnull(), 0, 1)
 
     df = df.resample('h').ffill()
 
