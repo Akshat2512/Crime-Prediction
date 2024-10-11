@@ -5,7 +5,7 @@ import sys, json, joblib
 import holidays
 
 
-def curr_crime_pred(req_data):
+def live_crime_pred(req_data):
 
     # req_data = {'model':'XGBoost', 'city': 'New_York', 'date': '2024/08/27'}
 

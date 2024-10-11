@@ -8,7 +8,7 @@ import sys, json
 from datetime import datetime, timedelta
 
 
-def filter_data_for_Analysis(req_data)
+def filter_data_for_Analysis(req_data):
     # req_data = {'city': 'Chicago', 'from': '2023-12-20', 'to':'2023-12-31', 'Ext_type': 'heat-map' }
     # Read data
     data = pd.read_csv(f'Data/{req_data["city"]}_crime_2001_2023.csv')

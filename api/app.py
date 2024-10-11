@@ -1,6 +1,6 @@
 import subprocess,json
 from flask import Flask, render_template, request, redirect
-from Module.currentcrime import curr_crime_pred
+from Module.currentcrime import live_crime_pred
 from Module.filterdata import filter_data_for_Analysis
 # # from flask_mysqldb import MySQL
 # import MySQLdb.cursors
