@@ -15,19 +15,19 @@ db_cred = sys.argv
 app = Flask(__name__)
 
 def connect_database():
-    connection = MySQLdb.connect(host=db_cred[1], 
-                             port=int(db_cred[2]),
-                             user=db_cred[3],
-                             password=db_cred[4],
-                             db=db_cred[5],
-                             cursorclass=MySQLdb.cursors.DictCursor)
+    # connection = MySQLdb.connect(host=db_cred[1], 
+    #                          port=int(db_cred[2]),
+    #                          user=db_cred[3],
+    #                          password=db_cred[4],
+    #                          db=db_cred[5],
+    #                          cursorclass=MySQLdb.cursors.DictCursor)
 
-    # connection = MySQLdb.connect(host='localhost',
-    #                              port=3306,
-    #                              user='root',
-    #                              password='',
-    #                              db='mydb',
-    #                              cursorclass=MySQLdb.cursors.DictCursor)
+    connection = MySQLdb.connect(host='localhost',
+                                 port=3306,
+                                 user='root',
+                                 password='password',
+                                 db='mydb',
+                                 cursorclass=MySQLdb.cursors.DictCursor)
 
     cursor = connection.cursor()
     return cursor, connection
@@ -235,13 +235,13 @@ def check_user():
     return "not exist"
 
 
-@app.route('/run_1', methods=['POST'])
-def run_1():
-    data = request.json
-    data = json.dumps(data)
-    output = subprocess.check_output(['python', 'CrimePrediction.py', data])
+# @app.route('/run_1', methods=['POST'])
+# def run_1():
+#     data = request.json
+#     data = json.dumps(data)
+#     output = subprocess.check_output(['python', 'CrimePrediction.py', data])
 
-    return output
+#     return output
 
 @app.route('/run_2', methods=['POST'])
 def run_2():
@@ -255,8 +255,11 @@ def run_2():
 def get_current_crime():
     data = request.json
     data = json.dumps(data)
-    output = subprocess.check_output(['python', 'currentcrime.py', data])
-
+    # output = subprocess.check_output(['python', 'currentcrime.py', data])
+    # cmd = f"C:/xampp/htdocs/php/Projects/Crime_Prediction/myenv/Scripts/activate && python currentcrime.py '{data}' && deactivate"
+    # output = subprocess.run(cmd, shell=True, check = True)
+    # print(output)
+    
     return output
 
 if __name__ == '__main__':

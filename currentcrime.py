@@ -1,17 +1,19 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, mean_absolute_percentage_error
-import seaborn as sns
-from sklearn import metrics
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, mean_absolute_percentage_error
+# import seaborn as sns
+# from sklearn import metrics
 from datetime import datetime, timedelta
 import sys, json, joblib
 import holidays
 
-req_data = json.loads(sys.argv[1])
-# req_data = {'model':'XGBoost', 'city': 'New_York', 'date': '2024/08/27'}
+# print(sys.argv[1])
+# req_data = json.loads(sys.argv[1])
 
-curr_time = pd.to_datetime(req_data['date'], format='%d/%m/%Y')
+req_data = {'model':'XGBoost', 'city': 'New_York', 'date': '2024/08/27'}
+
+curr_time = pd.to_datetime(req_data['date'], format='%Y/%m/%d')
 
 delta = timedelta(days=10)
 
@@ -35,7 +37,8 @@ df['holiday'] = df['date'].apply(lambda x: us_holidays.get(x))
 df.set_index('date',inplace=True)
 
 
-df['holiday'] = np.where(df['holiday'].isnull(), 0, 1)
+df['holiday'] = df['holiday'].apply(lambda x: 0 if pd.isnull(x) else 1)
+
 
 df = df.resample('h').ffill()
 
