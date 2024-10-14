@@ -7,6 +7,6 @@ holidays==0.42
 # xgboost==2.0.3
 # lightgbm==4.3.0
 pandas==2.2.3
-onnx==1.17.0
+# onnx==1.17.0
 onnxruntime==1.19.2
 # joblib==1.2.0
