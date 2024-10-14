@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-import sys, json, joblib
-import holidays
 
+import holidays
+import onnx, onnxruntime as rt
 
 def live_crime_pred(req_data):
 
-    # req_data = {'model':'XGBoost', 'city': 'New_York', 'date': '2024/08/27'}
+    req_data = {'model':'XGBoost', 'city': 'New_York', 'date': '27/08/2024'}
 
     curr_time = pd.to_datetime(req_data['date'], format='%d/%m/%Y')
 
@@ -61,13 +61,11 @@ def live_crime_pred(req_data):
 
     df = create_features(df)
 
+    df['season'] = df['season'].astype(np.int32)
+    df['weekofyear'] = df['weekofyear'].astype(np.int32)
+    df['holiday'] = df['holiday'].astype(np.int32)
+      
 
-
-    file = open(f'Models/{req_data["city"]}_{req_data["model"]}.joblib', 'rb')
-    model = joblib.load(file)
-    file.close()
-
-    # test = pd.DataFrame(df)
 
     FEATURES = ['hour','dayofweek','quarter','month','year',
             'dayofyear','dayofmonth','weekofyear',
@@ -75,12 +73,20 @@ def live_crime_pred(req_data):
 
     df = df[FEATURES]
 
+  # Loading model and prediction using model
+    onnx_model = onnx.load(f"Onnx Models/{req_data['city']}_{req_data['model']}.onnx")
+    sess = rt.InferenceSession(onnx_model.SerializeToString(), providers=["CPUExecutionProvider"])
+    input_name = sess.get_inputs()[0].name
+    pred_onx = sess.run(None, {input_name: df.values.astype(np.float32)})
+
+
     current = pd.DataFrame({})
-    current['prediction'] = model.predict(df)
+    current['prediction'] = pred_onx[0].ravel()
 
     Date_X = '", "'.join(map(str, df.index))
     Pred = ', '.join(map(str, round(current['prediction'])))
-
     jsn = '{"dates": '+'["'+Date_X+'"]'+', "predictions":'+'['+Pred+']}'
-
+    
     return jsn
+
+print(live_crime_pred({}))
