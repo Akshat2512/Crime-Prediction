@@ -219,7 +219,7 @@ const geolocate = new mapboxgl.GeolocateControl({
     // })
     var i=0;
     fly_to(z);
-    // pred_crimes();
+    pred_crimes();
     pred_current();
      
   }
