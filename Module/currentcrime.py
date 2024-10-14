@@ -88,4 +88,4 @@ def live_crime_pred(req_data):
     
     return jsn
 
-print(live_crime_pred({}))
+# print(live_crime_pred({}))
