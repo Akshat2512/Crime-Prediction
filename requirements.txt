@@ -1,6 +1,6 @@
 flask==3.0.1
 
-numpy==1.26.4
+# numpy==1.26.4
 holidays==0.42
 pandas==2.2.3
 
