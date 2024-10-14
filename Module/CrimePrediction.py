@@ -111,8 +111,7 @@ def prediction(req_data):
     # file.close()
     
 
-    onnx_model = onnx.load(f"Onnx Models/{req_data['city']}_{req_data['model']}.onnx")
-    sess = rt.InferenceSession(onnx_model.SerializeToString(), providers=["CPUExecutionProvider"])
+    sess = rt.InferenceSession(f"Onnx Models/{req_data['city']}_{req_data['model']}.onnx", providers=["CPUExecutionProvider"])
     input_name = sess.get_inputs()[0].name
     pred_onx = sess.run(None, {input_name: X_test.values.astype(np.float32)})
 
