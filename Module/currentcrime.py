@@ -7,7 +7,7 @@ import  onnxruntime as rt
 
 def live_crime_pred(req_data):
 
-    req_data = {'model':'XGBoost', 'city': 'New_York', 'date': '27/08/2024'}
+    # req_data = {'model':'XGBoost', 'city': 'New_York', 'date': '27/08/2024'}
 
     curr_time = pd.to_datetime(req_data['date'], format='%d/%m/%Y')
 
