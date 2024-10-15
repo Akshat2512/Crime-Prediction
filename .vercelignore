@@ -2,6 +2,6 @@ README.md
 Extra/*
 Models/*
 .github
-Data/*.csv
+Data/New_York_crime_2001_2023.csv
 sqlalchemy.ipynb
 .env.local
