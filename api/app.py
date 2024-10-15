@@ -18,7 +18,7 @@ def read_env():
     postgres_host = os.getenv('POSTGRES_HOST')
     postgres_password = os.getenv('POSTGRES_PASSWORD')
     postgres_database = os.getenv('POSTGRES_DATABASE')
-    return render_template(f'{postgres_url}, {postgres_user}')
+    return f'{postgres_url}, {postgres_user}'
 
 @app.route('/run_1', methods=['POST'])
 def run_1():
