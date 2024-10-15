@@ -8,7 +8,9 @@ import sys
 import hashlib
 import os
 import binascii
-
+from currentcrime import live_crime_pred
+from CrimePrediction import crime_pred
+from filterdata import filter_crimes
 
 db_cred = sys.argv
 
@@ -235,31 +237,32 @@ def check_user():
     return "not exist"
 
 
-# @app.route('/run_1', methods=['POST'])
-# def run_1():
-#     data = request.json
-#     data = json.dumps(data)
-#     output = subprocess.check_output(['python', 'CrimePrediction.py', data])
-
-#     return output
+@app.route('/run_1', methods=['POST'])
+def run_1():
+    data = request.json
+    # data = json.dumps(data)
+    # output = subprocess.check_output(['python', 'CrimePrediction.py', data])
+    output = crime_pred(data)
+    return output
 
 @app.route('/run_2', methods=['POST'])
 def run_2():
     data = request.json
-    data = json.dumps(data)
-    output = subprocess.check_output(['python', 'filterdata.py', data])
+    # data = json.dumps(data)
+    output = filter_crimes(data)
+    # output = subprocess.check_output(['python', 'filterdata.py', data])
 
     return output
 
 @app.route('/live', methods=['POST'])
 def get_current_crime():
     data = request.json
-    data = json.dumps(data)
+    # data = json.dumps(data)
     # output = subprocess.check_output(['python', 'currentcrime.py', data])
     # cmd = f"C:/xampp/htdocs/php/Projects/Crime_Prediction/myenv/Scripts/activate && python currentcrime.py '{data}' && deactivate"
     # output = subprocess.run(cmd, shell=True, check = True)
     # print(output)
-    
+    output = live_crime_pred(data)
     return output
 
 if __name__ == '__main__':

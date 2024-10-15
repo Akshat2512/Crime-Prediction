@@ -1,2 +1,7 @@
 static/Data/Chicago_crime_2001_2023.csv
 /static/GeoJson
+my-env
+myenv
+.env.local
+Models/Onnx Models
+Extra/static

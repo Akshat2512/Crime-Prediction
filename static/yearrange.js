@@ -368,9 +368,8 @@ async function getdata(crm)
       // str = str.replace(/array\(/g, "");
       // str = str.replace(/\)/g, "");
       // str = str.replace(/(\-\d+\.?\d*)/g, "\"$1\"");
-      console.log(str)
       jsn = JSON.parse(str)
-    //  console.log(jsn)
+      console.log(jsn)
     })
     return jsn
     

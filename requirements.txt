@@ -7,3 +7,4 @@ holidays==0.42
 xgboost==2.0.3
 lightgbm==4.3.0
 joblib==1.2.0
+onnxruntime==1.19.2 
