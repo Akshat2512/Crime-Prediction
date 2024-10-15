@@ -3,3 +3,5 @@ Extra/*
 Models/*
 .github
 Data/*.csv
+sqlalchemy.ipynb
+.env.local
