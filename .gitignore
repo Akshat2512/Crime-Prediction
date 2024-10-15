@@ -14,3 +14,4 @@ README.md
 .vercel
 myenv
 my-env
+.env.local
