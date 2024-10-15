@@ -2,8 +2,8 @@ flask==3.0.1
 
 numpy==1.26.4
 holidays==0.42
-# pandas==2.2.3
-polars
+pandas==2.2.3
+# polars
 # onnxruntime==1.19.2
 onnxruntime==1.16.3
-sqlalchemy==2.0.35
+# sqlalchemy==2.0.35
