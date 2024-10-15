@@ -11,7 +11,7 @@ from Module.filterdata import filter_data_for_Analysis
 app = Flask(__name__)
 
 
-@app.route('/env', methods=['POST'])
+@app.route('/env', methods=['GET'])
 def read_env():
     postgres_url = os.getenv('POSTGRES_URL')
     postgres_user = os.getenv('POSTGRES_USER')
