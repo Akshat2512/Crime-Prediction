@@ -13,6 +13,10 @@
       {
         "src": "Data/**/*",
         "use": "@vercel/static"
+      },
+      {
+        "src": "static/**/*",
+        "use": "@vercel/static"
       }
     ],
     "rewrites": [
@@ -20,7 +24,7 @@
       
       {
         "source": "/(.*)",
-        "destination": "public/$1"
+        "destination": "public/index.html"
       },
       {
         "source": "/(.*)",
