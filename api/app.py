@@ -7,24 +7,24 @@ from Module.filterdata import filter_data_for_Analysis
 # # from flask_mysqldb import MySQL
 # import MySQLdb.cursors
 
-
 app = Flask(__name__)
 
-
+@app.route('/')
+def main():
+    return render_template('index.html')
 
 @app.route('/run_1', methods=['POST'])
 def run_1():
     data = request.json
     output = prediction(data)
-
+    
     return output
 
 @app.route('/run_2', methods=['POST'])
 def run_2():
     data = request.json
     response = filter_data_for_Analysis(data)
-
-    return  Response(response, mimetype='application/json')
+    return response
 
 @app.route('/live', methods=['POST'])
 def get_current_crime():
@@ -34,5 +34,5 @@ def get_current_crime():
 
     return output
 
-# if __name__ == '__main__':
-#         app.run(host='localhost', port=5000, debug=True)
+if __name__ == '__main__':
+        app.run(host='localhost', port=5000, debug=True)
