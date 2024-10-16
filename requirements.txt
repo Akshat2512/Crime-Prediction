@@ -6,5 +6,5 @@ pandas==2.2.3
 # polars
 # onnxruntime==1.19.2
 onnxruntime==1.16.3
-# sqlalchemy==2.0.35
+
 psycopg2-binary==2.9.9

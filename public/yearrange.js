@@ -351,19 +351,27 @@ async function getfiltereddata(crm)
 {
   
   var jsn;
-  
   await fetch('/run_2',{
       method: "POST",
       headers:{"Content-Type" :"application/json"},
       body: crm
-    }).then(response => response.json()).then(res =>{
+    }).then(response => response.text()).then(str =>{
       
+      // console.log(str)
+      // str = str.replaceAll("['", "[");
+      // str = str.replaceAll("']", "]");
+      // str = str.replaceAll("'", "\"");
+      // str = str.replace(/""/g,"\"")
       // str = str.replaceAll('BURGLAR"S TOOLS', 'BURGLARS TOOLS');
-    
-      jsn = res
+      
+  
+      // str = str.replace(/array\(/g, "");
+      // str = str.replace(/\)/g, "");
+      // str = str.replace(/(\-\d+\.?\d*)/g, "\"$1\"");
+      console.log(str)
+      jsn = JSON.parse(str)
     //  console.log(jsn)
     })
-    
     return jsn
     
 }
