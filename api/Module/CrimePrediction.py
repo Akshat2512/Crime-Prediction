@@ -7,22 +7,21 @@ from datetime import date, timedelta
 import holidays
 # import onnx
 import onnxruntime as rt
-from filterdata import retrieve_database
+from Module.filterdata import retrieve_database
 # import sys, json, joblib
 
 
 def prediction(req_data):
-    req_data = {"city": "New_York", "model":"XGBoost"}
+    # req_data = {"city": "New_York", "model":"XGBoost"}
     
     try:
       df_year=pd.read_csv(f'/tmp/{req_data["city"]}_2001_2023.csv')
-      print('cache hit occured')
     except Exception as e:
       query = f"SELECT DATE_TRUNC('hour', date) AS hour, count(*) AS total_count FROM \"{req_data['city']} crimes\" GROUP BY hour ORDER BY hour;"
            
       response = retrieve_database(query)
       df_year = pd.DataFrame(response, columns=['date', 'Crime Count'])
-      df_year.to_csv(f'/tmp/{req_data["city"]}_2001_2023.csv', index=True)
+      df_year.to_csv(f'/tmp/{req_data["city"]}_2001_2023.csv', index=False)
    
     df_year = df_year.set_index('date')
 
@@ -197,5 +196,3 @@ def prediction(req_data):
     return Output
 
 
-
-prediction({})
