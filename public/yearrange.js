@@ -347,31 +347,23 @@ function anislide(z)
 
 }
 
-async function getdata(crm)
+async function getfiltereddata(crm)
 {
   
   var jsn;
-    await fetch('/run_2',{
+  
+  await fetch('/run_2',{
       method: "POST",
       headers:{"Content-Type" :"application/json"},
       body: crm
-    }).then(response => response.text()).then(str =>{
+    }).then(response => response.json()).then(res =>{
       
-      // console.log(str)
-      // str = str.replaceAll("['", "[");
-      // str = str.replaceAll("']", "]");
-      // str = str.replaceAll("'", "\"");
-      // str = str.replace(/""/g,"\"")
-      str = str.replaceAll('BURGLAR"S TOOLS', 'BURGLARS TOOLS');
-      
-  
-      // str = str.replace(/array\(/g, "");
-      // str = str.replace(/\)/g, "");
-      // str = str.replace(/(\-\d+\.?\d*)/g, "\"$1\"");
-      console.log(str)
-      jsn = JSON.parse(str)
+      // str = str.replaceAll('BURGLAR"S TOOLS', 'BURGLARS TOOLS');
+    
+      jsn = res
     //  console.log(jsn)
     })
+    
     return jsn
     
 }
@@ -406,8 +398,8 @@ async function datacollection(city)
 
        var mtype = document.querySelector('#year #mtype');
     // Create a new GeoJSON object with the filtered features
-       const crm = JSON.stringify({'city': city, 'from': from.value, 'to': to.value, 'Ext_type':'heat-map'});
-        data = await getdata(crm)
+       const crm = JSON.stringify({'city': city, 'from': from.value, 'to': to.value});
+        data = await getfiltereddata(crm)
 
        var geodata = data[from.value];
 
