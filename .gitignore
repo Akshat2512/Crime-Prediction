@@ -3,10 +3,9 @@ Models
 # templates
 Module/updatemodels.py
 # Data
-static
+/static
 Extra
 
-package-lock.json
 README.md
 .vercel
 myenv
