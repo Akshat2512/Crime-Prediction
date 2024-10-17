@@ -1,6 +1,5 @@
 import subprocess,json, os
-from flask import Flask, render_template, request, redirect, Response, url_for
-
+from flask import Flask, render_template, request, redirect, Response
 
 import hashlib
 import binascii
@@ -32,22 +31,6 @@ def unhex(salt):
     return salt
 
    
-
-
-
-# sn, 0
-# f_name, 1
-# middle_name, 2
-# last_name, 3
-# age, 4
-# ph_no, 5
-# email, 6
-# country, 7
-# username, 8
-# pwd, 9
-# salt, 10
-# sess_id, 11
-# sess_start, 12
 
 @app.route('/')
 def index():
@@ -227,10 +210,6 @@ def check_user():
     return "not exist"
 
 
-# @app.route('/')
-# def main():
-#     return render_template('index.html')
-
 @app.route('/run_1', methods=['POST'])
 def run_1():
     data = request.json
@@ -252,5 +231,5 @@ def get_current_crime():
 
     return output
 
-if __name__ == '__main__':
-        app.run(host='localhost', port=5000, debug=True)
+# if __name__ == '__main__':
+#         app.run(host='localhost', port=5000, debug=True)

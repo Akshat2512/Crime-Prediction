@@ -18,7 +18,7 @@ Here's the System Architecture Diagram of this Application:
 </p>
 
 #### Technology Stack
-HTML, CSS, Javascript, Python, Flask, MySQL, Machine Learning, REST APIs, Mapbox API, ngrok
+HTML, CSS, Javascript, Python, Flask, PostgreSQL, Machine Learning, REST APIs, Mapbox API
 
 ## How It Works
 - Frontend:
@@ -58,9 +58,9 @@ The backend is built using Python Flask web framework which is responsible for h
 
 
 - Database:
-The MySQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other profile details. Database is connected through SSH tunneling protocol. The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data.
+The PostgreSQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other crimes related data. The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data.
 
-This database is maintained in my Local Machine through ssh tunneling
+This database is maintained in PostgreSQL service provided by vercel Cloud Platform
 <p align="center">
 <img src="Extra/database.png" alt="flowchart" style="height: 200px; ">
 </p>
