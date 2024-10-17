@@ -8,8 +8,8 @@ import psycopg2
 
 
 def retrieve_database(query):
-    # connection = psycopg2.connect("postgres://postgres:password@localhost:5432/verceldb")
-    connection = psycopg2.connect(os.getenv('POSTGRES_URL'))
+    connection = psycopg2.connect("postgres://postgres:password@localhost:5432/verceldb")
+    # connection = psycopg2.connect(os.getenv('POSTGRES_URL'))
     # connection.autocommit = True
     cursor = connection.cursor()
     cursor.execute(query)
