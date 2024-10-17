@@ -85,7 +85,6 @@ def create_user():
 
         if(get_usr):
             return "uname exist"
-    
 
     pwd = req_data['password']
     pwd , salt = encrypt_password(pwd, None)
