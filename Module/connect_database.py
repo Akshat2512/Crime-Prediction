@@ -1,5 +1,4 @@
-import psycopg2
-
+import psycopg2, os
 def retrieve_database(query):
     # connection = psycopg2.connect("postgres://postgres:password@localhost:5432/verceldb")
     connection = psycopg2.connect(os.getenv('POSTGRES_URL'))
