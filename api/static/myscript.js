@@ -471,10 +471,12 @@ function loadheatmap(geodata)
        'interpolate',
        ['linear'],
        ['zoom'],
-       0,
-       2,
-       9,
-       15
+       3,0.1,
+       4,0.4,
+       5,2,
+       7,5,
+       9,10,
+       10,15
        ],
       
       //  // Transition from heatmap to circle layer by zoom level

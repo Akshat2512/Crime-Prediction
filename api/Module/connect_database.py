@@ -1,7 +1,7 @@
 import psycopg2, os
 def retrieve_database(query):
-    connection = psycopg2.connect("postgres://postgres:password@localhost:5432/verceldb")
-    # connection = psycopg2.connect(os.getenv('POSTGRES_URL'))
+    # connection = psycopg2.connect("postgres://postgres:password@localhost:5432/verceldb")
+    connection = psycopg2.connect(os.getenv('POSTGRES_URL'))
 
     cursor = connection.cursor()
     cursor.execute(query)
@@ -15,8 +15,8 @@ def retrieve_database(query):
 
 def update_database(query):
 
-    connection = psycopg2.connect("postgres://postgres:password@localhost:5432/verceldb")
-    # connection = psycopg2.connect(os.getenv('POSTGRES_URL'))
+    # connection = psycopg2.connect("postgres://postgres:password@localhost:5432/verceldb")
+    connection = psycopg2.connect(os.getenv('POSTGRES_URL'))
     connection.autocommit = True
     cursor = connection.cursor()
     cursor.execute(query)
