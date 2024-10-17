@@ -3,7 +3,7 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 
 ## Project Deploy Url
 - Just create your account then login your page
-[Take a Visit](key-grizzly-directly.ngrok-free.app)
+[Take a Visit](https://crime-prediction-steel.vercel.app)
 
 ## Features
 
