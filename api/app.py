@@ -1,16 +1,15 @@
 import subprocess,json, os
-from flask import Flask, render_template, request, redirect, Response
+from flask import Flask, render_template, request, redirect, Response, url_for
 
 
 import hashlib
 import binascii
+import uuid
 
 from Module.CrimePrediction import prediction
 from Module.currentcrime import live_crime_pred
 from Module.filterdata import filter_data_for_Analysis, retrieve_database
 from Module.connect_database import retrieve_database, update_database
-# # from flask_mysqldb import MySQL
-# import MySQLdb.cursors
 
 app = Flask(__name__)
 
@@ -18,7 +17,7 @@ app = Flask(__name__)
 
 def encrypt_password(password, salt):
     
-    password = password
+    # password = password
     if(salt==None):
      salt = os.urandom(16)  
     
@@ -32,36 +31,47 @@ def unhex(salt):
     salt = binascii.unhexlify(salt)
     return salt
 
+   
 
 
-@app.route('/')
-def index():
-    return render_template('login.html')
+# @app.route('/')
+# def index():
+#     return render_template('login.html')
+# sn, 0
+# f_name, 1
+# middle_name, 2
+# last_name, 3
+# age, 4
+# ph_no, 5
+# email, 6
+# country, 7
+# username, 8
+# pwd, 9
+# salt, 10
+# sess_id, 11
+# sess_start, 12
 
 @app.route('/authenticate', methods=['POST'])
-def login():
-    cursor, _ = connect_database()
+def auth_login():
 
     username = request.form.get('uname')
     password = request.form.get('pwd')
    
-    response = f"Select * from users where username = '{username}';"
-    rv = cursor.fetchall()
-    
-    if(len(rv) and username.lower() == rv[0]['username']):
-      salt = rv[0]['salt']
+    query = f"Select * from users where username = '{username}';"
+    rv = retrieve_database(query)
+
+    print(rv)
+    if(len(rv) and username.lower() == rv[0][8]):
+      salt = rv[0][10]
       salt = unhex(salt)
       passhash = encrypt_password(password, salt)
       
-      if(passhash[0] == rv[0]['passhash']):
-        del rv[0]['passhash']
-        del rv[0]['salt']
-       
+      if(passhash[0] == rv[0][9]):
         def d(e):
             if rv[0][e] == None:
                 return ''
             return rv[0][e]
-        return render_template('geocrimes.html', f_name=d('first_name'), m_name=d('middle_name'), l_name=d('last_name'), age=d('age'), email=d('email'), ctr_code=d('country'), ph_no=d('phone'),  u_name=d('username') )
+        return render_template('geocrimes.html', f_name=d(1), m_name=d(2), l_name=d(3), age=d(4),ph_no=d(5), email=d(6), ctr_code=d(7), u_name=d(8) )
       else:
         return render_template('login.html', username=username, data2 = "Password not correct!!")
     else:
@@ -70,23 +80,24 @@ def login():
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    return render_template('login.html', data = "Logged out")
+    return redirect('/')
+   
   
 
 
 @app.route('/create', methods=['POST'])
 def create_user():
-    cursor, connection = connect_database()
+
 
     req_data = request.json
-    print(req_data)
+
     uname = req_data['username']
     i=0
     
     if(uname):
-        get_usr = f"select username from users where username = '{uname}';"
-        cursor.execute(get_usr)
-        get_usr = cursor.fetchall()
+        query = f"SELECT username FROM users WHERE username = '{uname}';"
+        get_usr = retrieve_database(query)
+
         if(get_usr):
             return "uname exist"
     
@@ -97,7 +108,7 @@ def create_user():
     req_data['salt'] = salt
 
 
-    query = f"INSERT INTO `users`(`first_name`, `middle_name`, `last_name`, `age`,  `username`, `passhash`, `email`, `country`, `phone`, `salt` ) VALUES ("
+    query = f"INSERT INTO users(first_name, middle_name, last_name, age,  username, passhash, email, country, phone, salt ) VALUES ("
 
     for x, y in req_data.items():
       i=i+1
@@ -111,8 +122,7 @@ def create_user():
 
     print(query)
     try:
-        cursor.execute(query)
-        connection.commit()
+        update_database(query)
         return "Success"
     except Exception as e:
         print("Error executing query:", str(e))
@@ -121,21 +131,20 @@ def create_user():
 
 @app.route('/update', methods=['POST'])
 def update():
-    cursor, connection = connect_database()
-
+    
     req_data = request.json
     print(req_data)
     uname = req_data['old_uname'].lower()
     data = req_data['data']
-    query = "UPDATE `users` SET "
-
+    
     # old_id = f"select id from users where username = '{uname}'"
-    new_id = f"select id from users where username = '{data['username']}'"
+    query = f"select id from users where username = '{data['username']}'"
     if(uname != data['username']):
-      new_id = cursor.execute(new_id)
+      new_id = retrieve_database(new_id)
       if(new_id):
         return 'uname exists'
       
+    query = "UPDATE users SET "
 
     for x , y in data.items():
       if(y==''):
@@ -147,8 +156,7 @@ def update():
     query = query + f" Where username = '{uname}';"
     print(query)
     try:
-        cursor.execute(query)
-        connection.commit()
+        update_database(query)
         return "Success"
     except Exception as e:
         print("Error executing query:", str(e))
@@ -157,7 +165,6 @@ def update():
 
 @app.route('/ch_pwd', methods=['POST'])
 def change_password():
-    cursor, connection = connect_database()
 
     data = request.json
 
@@ -175,15 +182,15 @@ def change_password():
       return 'not same'
     
   
-    get_usr = f"select * from users where username = '{uname}';"
-    if(not cursor.execute(get_usr)):
+    query = f"select * from users where username = '{uname}';"
+    get_usr = retrieve_database(query)
+    if(not get_usr):
         return 'not exist'
 
-    get_usr = cursor.fetchall()
-    
-    o_salt = get_usr[0]['salt'] 
+
+    o_salt = get_usr[0][10] 
     o_salt = unhex(o_salt)
-    o_passhash = get_usr[0]['passhash']
+    o_passhash = get_usr[0][9]
     
     o_pwd = encrypt_password(o_pwd, o_salt)
 
@@ -193,12 +200,12 @@ def change_password():
 
     n_pwd, salt = encrypt_password(c_pwd, None)
    
-    query = f"UPDATE `users` SET passhash = '{n_pwd}', salt = '{salt}' where username = '{uname}';"
+    query = f"UPDATE users SET passhash = '{n_pwd}', salt = '{salt}' where username = '{uname}';"
     
     try:
-        cursor.execute(query)
-        connection.commit()
+        update_database(query)
         return "Success"
+
     except Exception as e:
         print("Error executing query:", str(e))
         return "Failed"
@@ -208,27 +215,19 @@ def change_password():
 
 @app.route('/check_user', methods=['POST'])
 def check_user():
-    cursor, _ = connect_database()
+
     username = request.json
+    query = f"Select username from users where username = '{username}';"
     
-    cursor.execute(f"Select username from users where username = '{username}';")
-    
-    rv = cursor.fetchall()
+    rv = retrieve_database(query)
     if(rv):
      return "exist"
     return "not exist"
 
 
-
-
-
-
-
-
-
-@app.route('/')
-def main():
-    return render_template('index.html')
+# @app.route('/')
+# def main():
+#     return render_template('index.html')
 
 @app.route('/run_1', methods=['POST'])
 def run_1():

@@ -1,5 +1,4 @@
 Models
-
 # templates
 Module/updatemodels.py
 # Data
@@ -10,4 +9,3 @@ README.md
 .vercel
 myenv
 my-env
-.env.local
