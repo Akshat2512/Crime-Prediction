@@ -2,7 +2,9 @@
 The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas effectively. By harnessing various machine learning algorithms, it enables timely intervention and proper resource allocation. This app analyzes historical crime trends of cities like New York, Chicago and predicts future crime rates.
 
 ## Project Deploy Url
-Login page disabled, this will directly load the main page
+If you don't want to create an new Account then use this login credentials:
+- <b>username:</b> testuser
+- <b>password:</b> testuser
 [Take a Visit](https://crime-prediction-steel.vercel.app/)
 
 ## Features
@@ -58,7 +60,7 @@ The backend is built using Python Flask web framework which is responsible for h
 
 
 - Database:
-The PostgreSQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other crimes related data. The SSH tunnel ensures that communication between servers is securely encrypted. It establishes a protected channel over an insecure network, preventing eavesdropping or interception of sensitive data.
+The PostgreSQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other crimes related data.
 
 This database is maintained in PostgreSQL service provided by vercel Cloud Platform
 <p align="center">
