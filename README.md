@@ -3,7 +3,7 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 
 ## Project Deploy Url
 Login page disabled, this will directly load the main page
-[Take a Visit](key-grizzly-directly.ngrok-free.app)
+[Take a Visit](https://crime-prediction-steel.vercel.app/)
 
 ## Features
 
@@ -69,5 +69,3 @@ This database is maintained in my Local Machine through ssh tunneling
 Once the backend processes the data, it returns the prediction results to the frontend.
 The frontend displays this information to the user.
 
-- Ngrok:
-The ngrok tunnel used to expose local development environment to the web having url - https://key-grizzly-directly.ngrok-free.app 
