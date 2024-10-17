@@ -34,9 +34,7 @@ def unhex(salt):
    
 
 
-# @app.route('/')
-# def index():
-#     return render_template('login.html')
+
 # sn, 0
 # f_name, 1
 # middle_name, 2
@@ -50,6 +48,10 @@ def unhex(salt):
 # salt, 10
 # sess_id, 11
 # sess_start, 12
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/authenticate', methods=['POST'])
 def auth_login():
@@ -73,9 +75,9 @@ def auth_login():
             return rv[0][e]
         return render_template('geocrimes.html', f_name=d(1), m_name=d(2), l_name=d(3), age=d(4),ph_no=d(5), email=d(6), ctr_code=d(7), u_name=d(8) )
       else:
-        return render_template('login.html', username=username, data2 = "Password not correct!!")
+        return render_template('index.html', username=username, data2 = "Password not correct!!")
     else:
-        return render_template('login.html', username=username, data1 = "Username not exist!!")
+        return render_template('index.html', username=username, data1 = "Username not exist!!")
 
 
 @app.route('/logout', methods=['POST'])
