@@ -142,7 +142,7 @@ def update():
     # old_id = f"select id from users where username = '{uname}'"
     query = f"select id from users where username = '{data['username']}'"
     if(uname != data['username']):
-      new_id = retrieve_database(new_id)
+      new_id = retrieve_database(query)
       if(new_id):
         return 'uname exists'
       
