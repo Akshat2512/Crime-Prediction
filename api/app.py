@@ -18,7 +18,7 @@ def encrypt_password(password, salt):
     
     # password = password
     if(salt==None):
-     salt = os.urandom(16)  
+     salt = os.urandom(100)  
     
     salted_password = salt+password.encode()
     hashed_password = hashlib.sha256(salted_password).hexdigest()
@@ -39,14 +39,14 @@ def index():
 @app.route('/authenticate', methods=['POST'])
 def auth_login():
 
-    username = request.form.get('uname')
+    username = request.form.get('uname').lower()
     password = request.form.get('pwd')
    
     query = f"Select * from users where username = '{username}';"
     rv = retrieve_database(query)
 
-    print(rv)
-    if(len(rv) and username.lower() == rv[0][8]):
+
+    if(len(rv) and username == rv[0][8]):
       salt = rv[0][10]
       salt = unhex(salt)
       passhash = encrypt_password(password, salt)
@@ -68,14 +68,10 @@ def logout():
     return redirect('/')
    
   
-
-
 @app.route('/create', methods=['POST'])
 def create_user():
 
-
     req_data = request.json
-
     uname = req_data['username']
     i=0
     
@@ -99,7 +95,7 @@ def create_user():
       if(y==''):
         query = query + f"NULL,"
       else:
-       query = query + f"'{y}'," 
+       query = query + f"'{y}',"
 
     query = query[:-1]
     query = query + ')'
@@ -117,16 +113,25 @@ def create_user():
 def update():
     
     req_data = request.json
-    print(req_data)
     uname = req_data['old_uname'].lower()
     data = req_data['data']
     
+
     # old_id = f"select id from users where username = '{uname}'"
-    query = f"select id from users where username = '{data['username']}'"
+    query = f"select id, passhash, salt from users where username = '{data['username']}'"
+    get_usr = retrieve_database(query)
     if(uname != data['username']):
       new_id = retrieve_database(query)
-      if(new_id):
+      if(get_usr):
         return 'uname exists'
+      
+    if(uname == data['username']):
+        salt = get_usr[0][2] 
+        salt = unhex(salt)
+        passhash = get_usr[0][1]
+        pwd, salt = encrypt_password(req_data['password'], salt)
+        if(passhash != pwd):
+           return "pwd incorrect"
       
     query = "UPDATE users SET "
 
@@ -138,7 +143,7 @@ def update():
   
     query = query[:-1]
     query = query + f" Where username = '{uname}';"
-    print(query)
+
     try:
         update_database(query)
         return "Success"
@@ -158,7 +163,7 @@ def change_password():
     c_pwd = data['c_pwd']
     
     if(uname == '' or o_pwd == '' or n_pwd == '' or c_pwd == ''):
-      return 'Failed' 
+      return 'Failed'
 
     if(o_pwd == n_pwd):
       return 'same as old'

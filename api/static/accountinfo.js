@@ -3,6 +3,7 @@ function Elem_id(e)
 {
     return document.getElementById(e);
 }
+
 var g;
 var k;
 function popupWarning(s)
@@ -11,7 +12,7 @@ function popupWarning(s)
    e.style.display = 'flex';
    setTimeout(()=>{e.style.top = '30px';
                    e.style.opacity = '1';}, 20)
-   
+
    e.innerText = s;
 
    clearTimeout(g)
@@ -69,7 +70,7 @@ Elem_id('ctr').onchange = ()=>{
     Elem_id('ctr_c').innerText = ctr_c[0];
 
     Elem_id('ph_no').maxLength = `${ctr_c[1]}`;
-    Elem_id('ph_no').value = '';
+    Elem_id('ph_no').value = null;
 }
 
 }
@@ -165,6 +166,7 @@ function edit_account()
         popupWarning('Phone Number not valid!!')
     }
     
+    
   
 
     x.onclick = ()=>{
@@ -202,35 +204,20 @@ function edit_account()
               return false;
             }
             if(mail == "not valid")
-            {popupWarning('Email not valid');
-                 return false;}
+            { 
+              popupWarning('Email not valid');
+                 return false;
+            }
             if(phno == "not valid")
-            {popupWarning('Phone number not valid');
-                 return false;}
-     
-             fetch('/update',{
-                  method: "POST",
-                  headers:{"Content-Type" :"application/json"},
-                  body: JSON.stringify(account_set())
-                }).then(response=>response.text()).then(data=>{
-                  if(data == "Success")
-                    { 
-                      popupWarning('Data successfully Updated!!!')
-                      disable_acc_page()
-                      acc_page_user_update(k[0])
-                      cancel() 
-                      b[0].disabled = false;
-                    }
+            { 
+              popupWarning('Phone number not valid');
+                 return false;
+            }
+            
+          
+           popup_confirm(k[0])
 
-                  else if(data == "uname exists")
-                      popupWarning('Failed !!! Username already exists')
-
-                  else if(data == "Failed")
-                      popupWarning("Failed!! Database lost it's connection")
-                  
-                  b[0].disabled = false;
-
-                }).catch(error=>popupWarning(error));
+          
         }
 
         b[1].onclick = ()=>{
@@ -273,7 +260,6 @@ function edit_account()
           e.style.cssText=  `background-color: #45454569;`;
       })
 
-      Elem_id('ph_no').style.cssText=`background-color: #45454569;`;
       var s = Elem_id('acc_info').querySelector('.grid-items:nth-child(2)');
       s.style.cssText = 'height: 20px;';
 
@@ -318,10 +304,61 @@ function edit_account()
         email = email.replaceAll(" ", "");
         var ctr_c = Elem_id('ctr_c').innerText;
         var ph_no = i[11].querySelector('input').value
+        var pwd = Elem_id('pwd').value;
         
-        jsn = {'old_uname': old_un, 'data':{'first_name':f_name,'middle_name':m_name,'last_name':l_name, 'age': age, 'username': uname, 'email': email, 'country':ctr_c, 'phone':ph_no}}
+        jsn = {'old_uname': old_un, 'password': pwd, 'data':{'first_name':f_name,'middle_name':m_name,'last_name':l_name, 'age': age, 'username': uname, 'email': email, 'country':ctr_c, 'phone':ph_no}}
        
         return jsn;
+    }
+   
+   
+    
+    function popup_confirm(k)
+    {
+      var p_id = Elem_id('popup-confirm');
+      p_id.style.display = 'flex';
+      Elem_id('close-btn').onclick = ()=>{
+           p_id.style.display ="none";
+      }
+      Elem_id('confirm-changes').onclick = () =>{
+        if(Elem_id('pwd').value == "")
+        {
+          popupWarning('Please enter password !!')
+        }
+        else
+          update_account(k);
+
+      }
+      
+    }
+    function update_account(k)
+    {
+      fetch('/update',{
+        method: "POST",
+        headers:{"Content-Type" :"application/json"},
+        body: JSON.stringify(account_set())
+         }).then(response=>response.text()).then(data=>{
+    
+        if(data == "Success")
+          { 
+            popupWarning('Data successfully Updated!!!')
+            disable_acc_page()
+            acc_page_user_update(k)
+            cancel() 
+            Elem_id('close-btn').click();
+          }
+        else if(data == "pwd incorrect")
+            popupWarning('Password is incorrect !!')
+    
+        else if(data == "uname exists")
+            popupWarning('Failed !!! Username already exists')
+
+        else if(data == "Failed")
+            popupWarning("Failed!! Database lost it's connection")
+
+      }).catch(error=>popupWarning(error));
+
+      Elem_id('pwd').value = "";
     }
 
     display_account();
@@ -356,3 +393,5 @@ function show_account()
   Elem_id('account-container').style.cssText = 'right: 30px; top:50px;'
 
 }
+
+

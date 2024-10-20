@@ -14,7 +14,7 @@
   
   <link href='static/map_popup.css' rel="stylesheet">
   <link href='static/mystyle.css' rel="stylesheet">
-
+  
 </head>
 
 <body>
@@ -79,7 +79,7 @@
 <div class="grid-items"><label>Username:</label></div><div class="grid-items"><input id="uname" type='text' value='{{u_name}}' disabled required/></div>
 <div class="grid-items"><label>Email:</label></div><div class="grid-items"><input id='mail_in' type="text" value='{{email}}' disabled required/></div>
 <div class="grid-items"><label>Country:</label></div><div class="grid-items"><select id="ctr" disabled> </select></div>
-<div class="grid-items"><label>Phone no.:</label></div><div class="grid-items"><span id='ctr_c'>{{ctr_code}}</span><input id='ph_no' type='text' value='{{ph_no}}' placeholder='Phone number' disabled /></div>
+<div class="grid-items"><label>Phone no.:</label></div><div class="grid-items"><span id='ctr_c'>{{ctr_code}}</span><input id='ph_no' type='text' value='{{ph_no}}' placeholder='Phone number' autocomplete="off" disabled /></div>
 <div class="grid-items"><button type='button' disabled>Save</button></div><div class="grid-items"><button type='button'>Cancel</button></div><form action="/logout" method="POST"><div class="grid-items"><button type='submit'>Logout</button></div></form></div>
 <div><i id='edit_acc' class="fa-solid fa-square-pen" style="color: #8a8c8f;"></i></div></div>
 </div>
@@ -91,6 +91,13 @@
 </div>
 
 <div id="popup-warning"></div>
+
+<div id="popup-confirm">
+      <span id="close-btn">&times;</span>
+      <div>Please enter your password to confirm all changes !! </div>
+      <div><label for="pwd">Password:</label><input id="pwd" type='password' required/></div>
+      <div><button id="confirm-changes">Confirm</button></div>
+</div>
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script> 
 <script type="text/javascript" src="static/accountinfo.js"></script>
 <script type="text/javascript" src="static/yearrange.js"></script>

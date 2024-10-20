@@ -707,9 +707,9 @@ transition: ease-in-out 0.7s;
     position: fixed;
     background-color: #666638;
     border-radius:10px;
-    z-index: 6;
+    z-index: 7;
     width: 300px;
-    left:30%;
+    left:37%;
     top: -100px;
     justify-content: center;
     padding: 30px;
@@ -717,3 +717,43 @@ transition: ease-in-out 0.7s;
     transition: ease-in-out 0.7s;
     animation: float 2s infinite ease-in-out;
    }
+
+
+   #popup-confirm{
+    display:none;
+    flex-direction:column;
+    gap:20px;
+    z-index:6;
+    position:fixed;
+    top:0px;
+    left:0px;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0909d4;
+    color: white;
+    padding: 30px;
+
+   }
+
+  #popup-confirm > :nth-child(1){
+    translate: 230px
+  }
+  
+ #popup-confirm > :nth-child(3){
+   padding:20px;
+   display: flex;
+   background: #00000085;
+   border-radius:30px;
+   gap:20px;
+ }
+
+   #confirm-changes{
+     
+    border-radius:20px;
+    border: 1px solid black;
+    padding: 7px 15px;
+  }
+
+   
