@@ -2,10 +2,10 @@
 The Crime Prediction App is an innovative solution that helps Law enforcement agencies in tackling most affected crime areas effectively. By harnessing various machine learning algorithms, it enables timely intervention and proper resource allocation. This app analyzes historical crime trends of cities like New York, Chicago and predicts future crime rates.
 
 ## Project Deployment URL
-[Deployed URL](https://crime-prediction-steel.vercel.app/)
+[Deployed URL](https://crime-prediction-steel.vercel.app/)<br>
 If you prefer not to create a new account, you can use the following login credentials:
 - <b>Username:</b> testuser
-- <b>Password:</b> testuser <br>
+- <b>Password:</b> testuser
 
 
 ## Features
