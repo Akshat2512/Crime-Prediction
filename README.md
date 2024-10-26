@@ -56,8 +56,10 @@ Fig.4 Crime Prediction Section
 </p>
 
 - Backend:
-The backend is built using Python Flask web framework which is responsible for handling the incoming requests from clients (such as create user, check user, authenticate, change password etc.) and maintaining user database, model inference, and returning the analysis or prediction results. 
+The backend is built using Python Flask web framework which is responsible for handling the incoming requests from clients (such as create user, check user, authenticate, change password etc.) and maintaining user database, model inference, and returning the analysis or prediction results.
 
+The Model is trained using various machine learning regressor models such as XGBoost, Decision Tree, Random Forest, LightGBM and Linear Regression.
+[Code](Extra/Collab/Chicago_Crime_Prediction.ipynb)
 
 - Database:
 The PostgreSQL database in our application serves as the central repository for user-related data. It stores information about users, authentication credentials, and other crimes related data.
