@@ -3,8 +3,8 @@ The Crime Prediction App is an innovative solution that helps Law enforcement ag
 
 ## Project Deployment URL
 If you prefer not to create a new account, you can use the following login credentials:
-- **Username:** testuser
-- **Password:** testuser
+- <b>Username:</b> testuser
+- <b>Password:</b> testuser<br>
 [Deployed URL](https://crime-prediction-steel.vercel.app/)
 
 ## Features
