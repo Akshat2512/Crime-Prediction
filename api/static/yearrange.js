@@ -7,7 +7,7 @@ max = '2023-12-31'
 
 y=y+`<table><tr><th><label>From: </label></th><th><input type="date" id="fr_Date" name="myDate" min=${min} max=${max} value="2023-12-20"></th>`+'<th></th><th></th></tr>'+
     `<tr><th><label>To: </label></th><th><input type="date" id="to_Date" name="myDate" min=${min} max=${max} value="${max}"></th>`+'<th id="iconn"><button class="iconn"><i class="fa-solid fa-circle-up"></i></button><button class="iconn"><i class="fa-solid fa-circle-down"></i></button></th>'+
-     '<th><button>Apply</button></th><th><button><i class="fa-solid fa-circle-play"></i></button></th></tr><tr><th><label>City: </label></th><th><select id="select-city-1"><option value="None">-None-</option><option value="New_York">New York</option><option value="Chicago">Chicago</option></select></th><th><label>Type: </label></th><th><select id="mtype"><option>Heatmap</option><option>Clusters</option></select></th></tr></table><button class="close"><i class="fa-solid fa-circle-xmark" style="color: #d06767;"></i></button>';
+     '<th><button>Apply</button></th><th><button><i class="fa-solid fa-circle-play"></i></button></th></tr><tr><th><label>City: </label></th><th><select id="select-city-1"><option value="None">-None-</option><option value="New_York">New York</option></select></th><th><label>Type: </label></th><th><select id="mtype"><option>Heatmap</option><option>Clusters</option></select></th></tr></table><button class="close"><i class="fa-solid fa-circle-xmark" style="color: #d06767;"></i></button>';
 s.innerHTML = y;
 
 
@@ -18,7 +18,6 @@ start = new Date(from.value);
 end = new Date(to.value);
 
 var b = s.querySelectorAll('button');
-
 
 var listdata = [] 
 var p,o;
