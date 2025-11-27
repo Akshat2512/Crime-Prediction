@@ -19,7 +19,6 @@ def retrieve_database(query):
     return output
 
 
-
 def update_database(query):
 
     connection = CONNECT_DB()

@@ -230,7 +230,6 @@ def run_2():
 @app.route('/live', methods=['POST'])
 def get_current_crime():
     data = request.json
-
     output = live_crime_pred(data)
 
     return output
